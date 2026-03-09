@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "testInternalFunc",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testPrivateFunc",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"week3/visibility.sol": "Base"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"week3/visibility.sol": {
+			"keccak256": "0x5caa0713c0f63349029c63d6e63f2f42f4b833fc5da9c609bd4deae77c94c512",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b91b8e3242a32a6c2a2ce41ea12d693db52d8666a40cc52395c81550b02ecf59",
+				"dweb:/ipfs/QmYTRNCnWMQ8HHv6utF5FXzrpJCmRVgrWvXYFC8pdE7tpX"
+			]
+		}
+	},
+	"version": 1
+}
