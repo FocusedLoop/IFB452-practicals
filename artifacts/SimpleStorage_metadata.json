@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.30+commit.73712a01"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -58,9 +58,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"week2/pure_functions.sol": "SimpleStorage"
+			"week2/visibility_and_getters.sol": "SimpleStorage"
 		},
-		"evmVersion": "prague",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -72,12 +72,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"week2/pure_functions.sol": {
-			"keccak256": "0x0b7ccc8b866d37e650d8e73079303d4451591526b9f2287b30dd1df563e757d2",
+		"week2/visibility_and_getters.sol": {
+			"keccak256": "0xb9917e3d935391183efc059d3c1622412e275d9e88ba26fdf2936ad7a742c86c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8293656a54eb102c686891d0efb6761dd57ff80b76cd63e732915df60ec40dd2",
-				"dweb:/ipfs/QmZSVNKbXKbZ3imjBD7vUx4cFi3asUDqLEC4AnBnF718GG"
+				"bzz-raw://3b7d9b38264af82bae819359c248cac46f17b243161b461acde0a6617df425f5",
+				"dweb:/ipfs/QmWQoQnd2vhuoToEkjvAqaXKxoJwj8mkwh9vXzPBKqbaCS"
 			]
 		}
 	},

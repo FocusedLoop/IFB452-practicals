@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.30+commit.73712a01"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -32,9 +32,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"week3/visibility.sol": "C"
+			"week3/inheritance.sol": "C"
 		},
-		"evmVersion": "prague",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -46,7 +46,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"week3/visibility.sol": {
+		"week3/inheritance.sol": {
 			"keccak256": "0x21de610a5195497972f374be24cab8f39f0e7d1051e03c87259af3efa91d2522",
 			"license": "MIT",
 			"urls": [
