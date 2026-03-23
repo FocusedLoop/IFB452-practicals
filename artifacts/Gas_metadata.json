@@ -7,15 +7,22 @@
 		"abi": [
 			{
 				"inputs": [],
-				"name": "foo",
+				"name": "forever",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "i",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "uint256",
 						"name": "",
-						"type": "string"
+						"type": "uint256"
 					}
 				],
-				"stateMutability": "pure",
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -32,7 +39,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"week3/inheritance.sol": "A"
+			"week4/gas_and_gas_price.sol": "Gas"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -46,12 +53,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"week3/inheritance.sol": {
-			"keccak256": "0x7770638096d4b199b28a67a1c9f2a2d61f74c779d1842000ddc803f96159163c",
+		"week4/gas_and_gas_price.sol": {
+			"keccak256": "0x0bfe206da596c566938fe9addd34e74a227a9360c84c04e59805724469c0ce94",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a6ba34e73f65ab5ee5e744dcb32d57bd726ed94455ef787029d817e7de46cf6d",
-				"dweb:/ipfs/QmUg6xCEccRiSZVDCzDKLboJzv8117s3ebWhmWQ6H7xYXS"
+				"bzz-raw://7cd835f2005e701868581658bfcfbe0477e9c1a43573d73a738a96810b37f6c9",
+				"dweb:/ipfs/QmNq96xqwAvpFzD99reTsHpPraRJk16xJgxq3AK3LnFcjw"
 			]
 		}
 	},

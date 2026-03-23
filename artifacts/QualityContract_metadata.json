@@ -1,37 +1,62 @@
 {
 	"compiler": {
-		"version": "0.8.18+commit.87f61d96"
+		"version": "0.8.30+commit.73712a01"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address[]",
-						"name": "initialStakeholders",
-						"type": "address[]"
-					}
-				],
+				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
 			{
+				"anonymous": false,
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "newStakeholder",
-						"type": "address"
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "contractId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "contractName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "address[]",
+						"name": "stakeholders",
+						"type": "address[]"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "qualityCriteria",
+						"type": "string"
 					}
 				],
-				"name": "addStakeholder",
+				"name": "QualityContractCreated",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_contractId",
+						"type": "uint256"
+					}
+				],
+				"name": "completeQualityContract",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "qualityScore",
+				"name": "contractCount",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -44,20 +69,37 @@
 			},
 			{
 				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_contractName",
+						"type": "string"
+					},
+					{
+						"internalType": "address[]",
+						"name": "_stakeholders",
+						"type": "address[]"
+					},
+					{
+						"internalType": "string",
+						"name": "_qualityCriteria",
+						"type": "string"
+					}
+				],
+				"name": "createQualityContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
 					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
 				],
-				"name": "stakeholders",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
 				"stateMutability": "view",
 				"type": "function"
 			},
@@ -65,13 +107,29 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "newScore",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "updateQualityScore",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "qualityContracts",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "contractName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "qualityCriteria",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "isComplated",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -88,9 +146,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"week3/qaulity_contract_with_stakeholders.sol": "QualityContract"
+			"week4/smart_contract.sol": "QualityContract"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "prague",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -102,12 +160,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"week3/qaulity_contract_with_stakeholders.sol": {
-			"keccak256": "0x75e778fda38e04a82a52ecdb5dcdd4f98fcb0dfe432c845f9cc964cba413b6ed",
+		"week4/smart_contract.sol": {
+			"keccak256": "0x72e921964f9a141d943babe366aff5c6d71515ff6816b9ded70c765bc523e85e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://296a75fd526ae5c26b379fce2b6c46d9026d4771a5cd3b21b17fdc6c0595c2ab",
-				"dweb:/ipfs/QmbwR9fQ9zhsiU29SYdELedSyYBZMnqHmLD1mwcFxU7Xvb"
+				"bzz-raw://6cb5f26a6ed63159c33e7825d34883fd5ce9f0894055412d61fd3fa05260e74a",
+				"dweb:/ipfs/QmVVvLhXHNm8Svjdmw2JfsVG5B2UwvZgQVcWUdfv1qUFcc"
 			]
 		}
 	},

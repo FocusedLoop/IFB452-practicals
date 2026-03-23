@@ -6,17 +6,25 @@
 	"output": {
 		"abi": [
 			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
 				"inputs": [],
-				"name": "foo",
+				"name": "getBalance",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "uint256",
 						"name": "",
-						"type": "string"
+						"type": "uint256"
 					}
 				],
-				"stateMutability": "pure",
+				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -32,7 +40,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"week3/inheritance.sol": "A"
+			"week5/sending_ether.sol": "ReceiveEther"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -46,12 +54,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"week3/inheritance.sol": {
-			"keccak256": "0x7770638096d4b199b28a67a1c9f2a2d61f74c779d1842000ddc803f96159163c",
+		"week5/sending_ether.sol": {
+			"keccak256": "0x31b81453bdc5b83f40644cc0b2f1f5648aeb9c8a2a425e4190a6da4d6aada8e1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a6ba34e73f65ab5ee5e744dcb32d57bd726ed94455ef787029d817e7de46cf6d",
-				"dweb:/ipfs/QmUg6xCEccRiSZVDCzDKLboJzv8117s3ebWhmWQ6H7xYXS"
+				"bzz-raw://33fdc38d65f2093c7a86ba7d6fc94821a6d2948e724d21a8715e5c98164b7c52",
+				"dweb:/ipfs/QmXcQvxKetBsCxCjXWmjDguajR8DUhoZfqSPRgfPhhtkEf"
 			]
 		}
 	},

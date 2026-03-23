@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.18+commit.87f61d96"
+		"version": "0.8.30+commit.73712a01"
 	},
 	"language": "Solidity",
 	"output": {
@@ -34,7 +34,7 @@
 		"compilationTarget": {
 			"week3/inheritance.sol": "C"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "prague",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -47,11 +47,11 @@
 	},
 	"sources": {
 		"week3/inheritance.sol": {
-			"keccak256": "0x21de610a5195497972f374be24cab8f39f0e7d1051e03c87259af3efa91d2522",
+			"keccak256": "0x7770638096d4b199b28a67a1c9f2a2d61f74c779d1842000ddc803f96159163c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8b275f7bc2c79d41d5f375a327b538bd6eb58ec359198200e2f3d0003c6dc6da",
-				"dweb:/ipfs/QmVbbrRUCXEXVMuHAvVcQJSY8z6JNiGKq2iJHEc6pgbPB2"
+				"bzz-raw://a6ba34e73f65ab5ee5e744dcb32d57bd726ed94455ef787029d817e7de46cf6d",
+				"dweb:/ipfs/QmUg6xCEccRiSZVDCzDKLboJzv8117s3ebWhmWQ6H7xYXS"
 			]
 		}
 	},

@@ -1,13 +1,13 @@
 {
 	"compiler": {
-		"version": "0.8.18+commit.87f61d96"
+		"version": "0.8.30+commit.73712a01"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
 			{
 				"inputs": [],
-				"name": "foo",
+				"name": "name",
 				"outputs": [
 					{
 						"internalType": "string",
@@ -15,7 +15,20 @@
 						"type": "string"
 					}
 				],
-				"stateMutability": "pure",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "text",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -32,9 +45,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"week3/inheritance.sol": "B"
+			"week3/constructor.sol": "B"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "prague",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -46,12 +59,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"week3/inheritance.sol": {
-			"keccak256": "0x21de610a5195497972f374be24cab8f39f0e7d1051e03c87259af3efa91d2522",
+		"week3/constructor.sol": {
+			"keccak256": "0x4888af158644757dfe7c4ba587059e72864aa9d2331619cd1976793b113fcef4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8b275f7bc2c79d41d5f375a327b538bd6eb58ec359198200e2f3d0003c6dc6da",
-				"dweb:/ipfs/QmVbbrRUCXEXVMuHAvVcQJSY8z6JNiGKq2iJHEc6pgbPB2"
+				"bzz-raw://060ef5458a9b39c3469c8159b94536365ea9590d5716ef88e1d1d480b2c4d51d",
+				"dweb:/ipfs/QmTuiydos2FYXpYXDLtmVX1zWHR8CNFhdgbAQE18R2gb6u"
 			]
 		}
 	},

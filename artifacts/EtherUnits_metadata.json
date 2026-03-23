@@ -6,33 +6,34 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "x",
-						"type": "uint256"
-					}
-				],
-				"name": "foo",
+				"inputs": [],
+				"name": "isOneEther",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "bool",
 						"name": "",
-						"type": "uint256"
+						"type": "bool"
 					}
 				],
-				"stateMutability": "pure",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "isOneWei",
+				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "_x",
-						"type": "uint256"
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
-				"name": "ternary",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "oneEther",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -40,7 +41,20 @@
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "pure",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "oneWei",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -57,7 +71,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"week3/control_flow.sol": "IfElse"
+			"week4/transactions.sol": "EtherUnits"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -71,12 +85,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"week3/control_flow.sol": {
-			"keccak256": "0x0685c7aece61b1ed9c9021c19ac5c7f8299eee73e63ff69f4a07e3ff77e96590",
+		"week4/transactions.sol": {
+			"keccak256": "0x444a87798a0fd6b25995b60db97f152d7b1a73c9821b77974fb2dc01a4c72dfd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a0a5e3735ebc1fe2224110e52103aef2f740e222baeec93ea08e3ebd48a3e933",
-				"dweb:/ipfs/QmeFZ1xWbtJpNkZTw1iPn3AyNaHLf8zHHst254FJsY1MXh"
+				"bzz-raw://1f0764e6fed8539efedf9598c9b39377629ab4ab792a454c58e1b04efea61bb4",
+				"dweb:/ipfs/QmWafzoZzzjzstJ7KYMaK5pMqKKEkdkRU7NkuWUB4b9Ads"
 			]
 		}
 	},
