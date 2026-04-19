@@ -13,7 +13,7 @@
 						"type": "address"
 					}
 				],
-				"name": "sendViaSend",
+				"name": "callFallback",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -26,7 +26,7 @@
 						"type": "address"
 					}
 				],
-				"name": "sendViaTransfer",
+				"name": "transferToFallback",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -45,7 +45,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"week5/sending_ether.sol": "SendEther"
+			"week5/fallback.sol": "SendToFallback"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -59,12 +59,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"week5/sending_ether.sol": {
-			"keccak256": "0x10ad0bfa51807af57e01c03d4f39ef8e5a2c12584e64ebe5394aabe4d875b127",
+		"week5/fallback.sol": {
+			"keccak256": "0x9921ccaf29ecfd9d4c2b89839aaaf0a25c86b27c1272bef19da45eb9a759f566",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4d0ba396cd64d09b452c9023dd093b045b6891b4eb2d0dee323dc6e4ed86f1f2",
-				"dweb:/ipfs/QmSJcGpSjiMaT59Mb11dtZZwr4tUZX1AnHkTPkbyJ2h1L6"
+				"bzz-raw://e7001fd8f07dbaa48d17f0f3255be90be417c751ed53c29dbab669e2e3fb0f53",
+				"dweb:/ipfs/QmfBGgCxNL3VZ6Xr2ux7qdnEy1iwQ4NFXPPEFEaWdQrJq8"
 			]
 		}
 	},

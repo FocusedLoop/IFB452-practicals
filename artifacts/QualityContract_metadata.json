@@ -91,6 +91,40 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_contractId",
+						"type": "uint256"
+					}
+				],
+				"name": "getQualityContractDetails",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "owner",
 				"outputs": [
@@ -101,6 +135,19 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_contractId",
+						"type": "uint256"
+					}
+				],
+				"name": "performQualityCheck",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -125,7 +172,7 @@
 					},
 					{
 						"internalType": "bool",
-						"name": "isComplated",
+						"name": "isCompleted",
 						"type": "bool"
 					}
 				],
@@ -161,11 +208,11 @@
 	},
 	"sources": {
 		"week4/smart_contract.sol": {
-			"keccak256": "0x72e921964f9a141d943babe366aff5c6d71515ff6816b9ded70c765bc523e85e",
+			"keccak256": "0xda3c52108134f3ef2c4ba928aa9dd5a1327a4d4f753b2613fd47087dcb2be18c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6cb5f26a6ed63159c33e7825d34883fd5ce9f0894055412d61fd3fa05260e74a",
-				"dweb:/ipfs/QmVVvLhXHNm8Svjdmw2JfsVG5B2UwvZgQVcWUdfv1qUFcc"
+				"bzz-raw://0f3d9d586125e6b1fad77eebfd5b21e12600f5f9bfd1864e56da8b5e9a048b15",
+				"dweb:/ipfs/Qmd853qoFhjRu1rpdnJXstk4P4g71Fs2ury6UGPzA7cF4M"
 			]
 		}
 	},
