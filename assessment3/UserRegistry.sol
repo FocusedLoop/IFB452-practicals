@@ -31,6 +31,7 @@ contract UserRegistry {
     function getUser(uint256 userId) external view
         returns (uint256 id, string memory name)
     {
+        require(userExists(userId), "Organisation does not exist");
         User memory user = users[userId];
         return (user.id, user.name);
     }

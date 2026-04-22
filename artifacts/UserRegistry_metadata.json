@@ -158,11 +158,11 @@
 	},
 	"sources": {
 		"assessment3/UserRegistry.sol": {
-			"keccak256": "0xb67be3ff96003404e269b75dd6330b6fa0e87b9bb7ec568e13684b486e7759e9",
+			"keccak256": "0x952abcfcb8c596d0b46ae04d71606421a989717001212100adae8dc94d108e71",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5720e65ee2619cec007c1e25a08052638ba908140c1d7e47a08904e31c6dd5e9",
-				"dweb:/ipfs/QmPrCZ2taFJp2jWkRE78TY5SURi8fvBbccgXyfXLg5Jh6q"
+				"bzz-raw://cde3174209947c376b4f854f10aa3308458a49306754d496ddd6369e05f21e3b",
+				"dweb:/ipfs/QmNvCbqX2kMbbCw7BJjdTDHnCnKBGoXLDD2Gpu4wpJrRbd"
 			]
 		}
 	},
