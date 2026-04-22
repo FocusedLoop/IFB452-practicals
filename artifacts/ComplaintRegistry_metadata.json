@@ -281,19 +281,19 @@
 	},
 	"sources": {
 		"assessment3/ComplainRegistry.sol": {
-			"keccak256": "0x9a183d9ae64a58cd1c12e98d5420327fc97c55bac01631f00d62a7973286959f",
+			"keccak256": "0x0368357a2a8f849eabb3d976b693507b134d466a7a653d6b8048a3cc437f283c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://57c2d40714912b46798c63186bf8b4ba6eb3dd94034bf57a1db107801d1bcb15",
-				"dweb:/ipfs/QmcsBoM4tnyYnjW1C3jWcVGx5LAGhLYMU7WT4ThQtirdxH"
+				"bzz-raw://c7df3ae9c13da820bb087a481e5008cf1fe91666d590cb72a45477de2d822207",
+				"dweb:/ipfs/QmWWZSH8ASAe6DqpudUUCjtRrbXo87ZjuKraqaDJwFgQcS"
 			]
 		},
 		"assessment3/OrganisationRegistry.sol": {
-			"keccak256": "0x8dcf6b9b29933b27cf2802cffa016a16fa0e31751eb675c1d602f02c1194c7c1",
+			"keccak256": "0xbb136f263d750add05af456ce9726fea61d8b82a288c3ac6b886ca58990fe736",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b9a46ea092e56747264b917fc8b8321558626881b48c334bff7d7529940aa012",
-				"dweb:/ipfs/QmaRHD3wqfxdYx6M9NfgjKxMPzaFTn9KSeihTQCPHAaEGp"
+				"bzz-raw://88f29616da7d2ebd9a64857562e2b125c277c79e62d02bf077f46ef4691c12a9",
+				"dweb:/ipfs/QmYuHtP7JnPpPYCqHit1wY6RCjueiS4yFmkxCudF7ErkuJ"
 			]
 		},
 		"assessment3/ReputationCalculation.sol": {
@@ -305,11 +305,11 @@
 			]
 		},
 		"assessment3/UserRegistry.sol": {
-			"keccak256": "0xd7a439b5268cb2dcbc48febd3293ea3ef2a6aead778ce8cfa25963010eb0969f",
+			"keccak256": "0xb67be3ff96003404e269b75dd6330b6fa0e87b9bb7ec568e13684b486e7759e9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ef6c19c9eea773cefdc78c1d0f819f92b3b30e3873841f087f648cd5fe4211c5",
-				"dweb:/ipfs/QmZL8nML2T43tsHavwrzJuRVBsThFBNwmLDa38mTzFn9X3"
+				"bzz-raw://5720e65ee2619cec007c1e25a08052638ba908140c1d7e47a08904e31c6dd5e9",
+				"dweb:/ipfs/QmPrCZ2taFJp2jWkRE78TY5SURi8fvBbccgXyfXLg5Jh6q"
 			]
 		}
 	},

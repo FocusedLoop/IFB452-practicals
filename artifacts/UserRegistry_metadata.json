@@ -31,25 +31,6 @@
 				"type": "event"
 			},
 			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "uint256",
-						"name": "userId",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "bool",
-						"name": "isVerified",
-						"type": "bool"
-					}
-				],
-				"name": "UserVerified",
-				"type": "event"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -68,35 +49,6 @@
 						"internalType": "string",
 						"name": "name",
 						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "exists",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "isVerified",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "userId",
-						"type": "uint256"
-					}
-				],
-				"name": "isVerifiedUser",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -172,37 +124,9 @@
 						"internalType": "string",
 						"name": "name",
 						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "exists",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "isVerified",
-						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "userId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "verified",
-						"type": "bool"
-					}
-				],
-				"name": "verifyUser",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -234,11 +158,11 @@
 	},
 	"sources": {
 		"assessment3/UserRegistry.sol": {
-			"keccak256": "0xd7a439b5268cb2dcbc48febd3293ea3ef2a6aead778ce8cfa25963010eb0969f",
+			"keccak256": "0xb67be3ff96003404e269b75dd6330b6fa0e87b9bb7ec568e13684b486e7759e9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ef6c19c9eea773cefdc78c1d0f819f92b3b30e3873841f087f648cd5fe4211c5",
-				"dweb:/ipfs/QmZL8nML2T43tsHavwrzJuRVBsThFBNwmLDa38mTzFn9X3"
+				"bzz-raw://5720e65ee2619cec007c1e25a08052638ba908140c1d7e47a08904e31c6dd5e9",
+				"dweb:/ipfs/QmPrCZ2taFJp2jWkRE78TY5SURi8fvBbccgXyfXLg5Jh6q"
 			]
 		}
 	},

@@ -47,9 +47,7 @@ contract ComplaintRegistry {
 
     function submitComplaint(uint256 userId, uint256 orgId, uint256 score, string memory contentHash) external returns (uint256) {
         require(bytes(contentHash).length > 0, "Complaint hash required");
-
         require(userRegistry.userExists(userId), "Invalid user");
-        require(userRegistry.isVerifiedUser(userId), "User not verified");
         require(organisationRegistry.organisationExists(orgId), "Organisation does not exist");
 
         complaintCount++;

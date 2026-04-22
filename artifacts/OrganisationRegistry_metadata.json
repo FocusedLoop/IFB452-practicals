@@ -54,11 +54,6 @@
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
-					},
-					{
-						"internalType": "bool",
-						"name": "exists",
-						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -120,11 +115,6 @@
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
-					},
-					{
-						"internalType": "bool",
-						"name": "exists",
-						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -178,11 +168,11 @@
 	},
 	"sources": {
 		"assessment3/OrganisationRegistry.sol": {
-			"keccak256": "0x8dcf6b9b29933b27cf2802cffa016a16fa0e31751eb675c1d602f02c1194c7c1",
+			"keccak256": "0xbb136f263d750add05af456ce9726fea61d8b82a288c3ac6b886ca58990fe736",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b9a46ea092e56747264b917fc8b8321558626881b48c334bff7d7529940aa012",
-				"dweb:/ipfs/QmaRHD3wqfxdYx6M9NfgjKxMPzaFTn9KSeihTQCPHAaEGp"
+				"bzz-raw://88f29616da7d2ebd9a64857562e2b125c277c79e62d02bf077f46ef4691c12a9",
+				"dweb:/ipfs/QmYuHtP7JnPpPYCqHit1wY6RCjueiS4yFmkxCudF7ErkuJ"
 			]
 		}
 	},
