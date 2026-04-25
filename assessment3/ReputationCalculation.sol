@@ -20,12 +20,9 @@ contract ReputationCalculation {
     }
 
     constructor() {
-        // Store the deployer so they can call setComplaintRegistry after
-        // ComplaintRegistry is deployed (avoids circular dependency)
         owner = msg.sender;
     }
 
-    // Call this once after deploying ComplaintRegistry, passing its address
     function setComplaintRegistry(address _complaintRegistry) external {
         require(msg.sender == owner, "Only owner can set");
         require(_complaintRegistry != address(0), "Invalid address");

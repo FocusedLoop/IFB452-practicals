@@ -1,1 +1,4 @@
 *.pdf*
+*.states*
+*artifacts*
+*deployment.txt*
