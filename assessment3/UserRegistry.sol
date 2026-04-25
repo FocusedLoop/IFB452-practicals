@@ -27,7 +27,6 @@ contract UserRegistry {
         return userCount;
     }
 
-    // TODO: REFACTOR
     function getUser(uint256 userId) external view
         returns (uint256 id, string memory name)
     {
