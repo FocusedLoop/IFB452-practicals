@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.30+commit.73712a01"
+		"version": "0.8.19+commit.7dd6d404"
 	},
 	"language": "Solidity",
 	"output": {
@@ -155,7 +155,7 @@
 		"compilationTarget": {
 			"assessment3/OrganisationRegistry.sol": "OrganisationRegistry"
 		},
-		"evmVersion": "prague",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -168,11 +168,11 @@
 	},
 	"sources": {
 		"assessment3/OrganisationRegistry.sol": {
-			"keccak256": "0xbb136f263d750add05af456ce9726fea61d8b82a288c3ac6b886ca58990fe736",
+			"keccak256": "0xf88e29134721ca66302e29a09fd25e41abf64c09e0aa5d62fb54569f8031ceb1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://88f29616da7d2ebd9a64857562e2b125c277c79e62d02bf077f46ef4691c12a9",
-				"dweb:/ipfs/QmYuHtP7JnPpPYCqHit1wY6RCjueiS4yFmkxCudF7ErkuJ"
+				"bzz-raw://98b415aa54bcdc3e28a9ea4cd3108600332f838d8e4d430aa150c3e7e781bcf2",
+				"dweb:/ipfs/QmcitwJ9SxcEcMJF6MwyR7wiDVd1CQoW3EpA6myCiJkyd6"
 			]
 		}
 	},

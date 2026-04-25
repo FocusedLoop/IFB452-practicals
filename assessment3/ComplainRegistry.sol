@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.3;
+pragma solidity 0.8.19;
 
 import "./OrganisationRegistry.sol";
 import "./UserRegistry.sol";
@@ -32,7 +32,7 @@ contract ComplaintRegistry {
         uint256 indexed orgId,
         uint256 score,
         address reporter,
-        string contentHash
+        string contentHash 
     );
 
     constructor (address organisationRegistryAddress, address userRegistryAddress, address reputationCalculationAddress) {

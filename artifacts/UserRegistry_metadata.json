@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.30+commit.73712a01"
+		"version": "0.8.19+commit.7dd6d404"
 	},
 	"language": "Solidity",
 	"output": {
@@ -23,7 +23,7 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "",
+						"name": "registrant",
 						"type": "address"
 					}
 				],
@@ -145,7 +145,7 @@
 		"compilationTarget": {
 			"assessment3/UserRegistry.sol": "UserRegistry"
 		},
-		"evmVersion": "prague",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -158,11 +158,11 @@
 	},
 	"sources": {
 		"assessment3/UserRegistry.sol": {
-			"keccak256": "0x952abcfcb8c596d0b46ae04d71606421a989717001212100adae8dc94d108e71",
+			"keccak256": "0xb6729cca779e11ea5ecf5f2c454fd8afe460c0d01562d66f649c3704cce0921c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cde3174209947c376b4f854f10aa3308458a49306754d496ddd6369e05f21e3b",
-				"dweb:/ipfs/QmNvCbqX2kMbbCw7BJjdTDHnCnKBGoXLDD2Gpu4wpJrRbd"
+				"bzz-raw://51aac5e82d3666cac9ee87129cd83f53d52588c806ad426af277ee96cc9bbedc",
+				"dweb:/ipfs/QmRap2P21reMCUyRrBAJGGU123cPvUdnUeLwvpW7vtHxx5"
 			]
 		}
 	},

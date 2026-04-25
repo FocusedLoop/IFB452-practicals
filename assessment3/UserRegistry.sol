@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.3;
+pragma solidity 0.8.19;
 
 // TODO: ADD WALLET
 contract UserRegistry {
@@ -12,7 +12,7 @@ contract UserRegistry {
     uint256 public userCount;
     mapping(uint256 => User) public users;
 
-    event UserRegistered(uint256 indexed userId, string name, address indexed);
+    event UserRegistered(uint256 indexed userId, string name, address indexed registrant);
 
     function registerUser(string memory name) external returns (uint256) {
         require(bytes(name).length > 0, "User name required");
@@ -31,7 +31,7 @@ contract UserRegistry {
     function getUser(uint256 userId) external view
         returns (uint256 id, string memory name)
     {
-        require(userExists(userId), "Organisation does not exist");
+        require(userExists(userId), "User does not exist");
         User memory user = users[userId];
         return (user.id, user.name);
     }

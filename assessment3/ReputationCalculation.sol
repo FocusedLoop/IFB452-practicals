@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.3;
+pragma solidity 0.8.19;
 
 // TODO: Add better error handling
 contract ReputationCalculation {
+    address public owner;
     address public complaintRegistry;
 
     mapping(uint => uint) public totalScore;
@@ -19,7 +20,17 @@ contract ReputationCalculation {
     }
 
     constructor() {
-        complaintRegistry = msg.sender;
+        // Store the deployer so they can call setComplaintRegistry after
+        // ComplaintRegistry is deployed (avoids circular dependency)
+        owner = msg.sender;
+    }
+
+    // Call this once after deploying ComplaintRegistry, passing its address
+    function setComplaintRegistry(address _complaintRegistry) external {
+        require(msg.sender == owner, "Only owner can set");
+        require(_complaintRegistry != address(0), "Invalid address");
+        require(complaintRegistry == address(0), "Already set");
+        complaintRegistry = _complaintRegistry;
     }
 
     function updateExistingScore (uint orgId, uint256 userId, uint newScore) private 
