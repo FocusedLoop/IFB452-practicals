@@ -35,6 +35,7 @@ contract OrganisationRegistry {
         return orgId > 0 && orgId <= organisationCount;
     }
 
+    // Debug
     function getOrganisation(uint256 orgId) external view returns (uint256 id, string memory name, address owner)
     {
         require(organisationExists(orgId), "Organisation does not exist");

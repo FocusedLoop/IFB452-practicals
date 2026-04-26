@@ -71,4 +71,14 @@ contract ComplaintRegistry {
 
         return complaintCount;
     }
+
+    function getComplaints(uint256 orgId) external view returns (Complaint[] memory) {
+        require(organisationRegistry.organisationExists(orgId), "Organisation does not exist");
+        uint256[] memory ids = complaintsByOrganisation[orgId];
+        Complaint[] memory result = new Complaint[](ids.length);
+        for (uint256 i = 0; i < ids.length; i++) {
+            result[i] = complaints[ids[i]];
+        }
+        return result;
+    }
 }
