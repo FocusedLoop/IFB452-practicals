@@ -3,6 +3,7 @@ pragma solidity 0.8.19;
 
 // TODO: Add better error handling
 contract ReputationCalculation {
+
     address public owner;
     address public complaintRegistry;
 
@@ -23,6 +24,7 @@ contract ReputationCalculation {
         owner = msg.sender;
     }
 
+    // Set the ComplaintRegistry address
     function setComplaintRegistry(address _complaintRegistry) external {
         require(msg.sender == owner, "Only owner can set");
         require(_complaintRegistry != address(0), "Invalid address");
@@ -30,6 +32,7 @@ contract ReputationCalculation {
         complaintRegistry = _complaintRegistry;
     }
 
+    // Update score for an organisation by a user
     function updateExistingScore (uint orgId, uint256 userId, uint newScore) private 
         returns (uint oldScore) 
     {
@@ -39,6 +42,7 @@ contract ReputationCalculation {
         return oldScore;
     }
 
+    // Update score for an organisation by a user
     function updateScore(uint orgId, uint256 userId, uint score) public onlyComplaintRegistry {
         require(score >= 1 && score <= 10, "Score must be between 1 and 10");
 
@@ -57,6 +61,7 @@ contract ReputationCalculation {
     }
 
     // TODO: FIND A BETTER SCORE CALCULATION SYSTEM (ELO LIKE?)
+    // Get average score for an organisation
     function getScore(uint orgId) public view returns (uint) {
         if (reviewCount[orgId] == 0) { return 0; }
         return totalScore[orgId] / reviewCount[orgId];
