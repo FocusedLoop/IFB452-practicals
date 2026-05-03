@@ -10,7 +10,7 @@ contract OrganisationRegistry {
         address owner;
     }
 
-    // TODO: REPLACE WITH OFF CHAIN
+    // TODO: REPLACE WITH OFF CHAIN MAYBE?
     uint256 public organisationCount;
     mapping(uint256 => Organisation) public organisations;
 
@@ -31,15 +31,20 @@ contract OrganisationRegistry {
         return organisationCount;
     }
 
+    // Check if an organisation exists by ID
     function organisationExists(uint256 orgId) public view returns (bool) {
         return orgId > 0 && orgId <= organisationCount;
     }
 
     // Debug
+    // Check if an organisation exists by ID
     function getOrganisation(uint256 orgId) external view returns (uint256 id, string memory name, address owner)
     {
         require(organisationExists(orgId), "Organisation does not exist");
         Organisation memory org = organisations[orgId];
         return (org.id, org.name, org.owner);
     }
+
+    // TODO: LIST ORGANISATION
+    // TODO: SEARCH ORGANISTION
 }

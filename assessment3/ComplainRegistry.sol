@@ -45,6 +45,8 @@ contract ComplaintRegistry {
         reputationCalculation = ReputationCalculation(reputationCalculationAddress);
     }
 
+    // TODO: HAVE AN OPTION TO USE ABN INSTEAD OF ID
+    // Submit a complaint about an organisation
     function submitComplaint(uint256 userId, uint256 orgId, uint256 score, string memory contentHash) external returns (uint256) {
         require(bytes(contentHash).length > 0, "Complaint hash required");
         require(userRegistry.userExists(userId), "Invalid user");
@@ -72,6 +74,7 @@ contract ComplaintRegistry {
         return complaintCount;
     }
 
+    // Get complaints for an organisation given its ID
     function getComplaints(uint256 orgId) external view returns (Complaint[] memory) {
         require(organisationRegistry.organisationExists(orgId), "Organisation does not exist");
         uint256[] memory ids = complaintsByOrganisation[orgId];

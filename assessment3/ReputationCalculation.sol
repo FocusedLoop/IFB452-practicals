@@ -62,5 +62,7 @@ contract ReputationCalculation {
         return totalScore[orgId] / reviewCount[orgId];
     }
 
-    //TODO: ADD GET TOP SCORES
+    // TODO: ADD GET TOP SCORES
+
+    // 
 }
