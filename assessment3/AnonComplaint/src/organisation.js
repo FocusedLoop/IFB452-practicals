@@ -16,9 +16,9 @@ async function getContract() {
 
 export async function registerOrganisation(name) {
   const contract = await getContract();
-  const tx = await contract.registerOrganisation(name);
-  const r = await tx.wait();
-  return r.transactionHash;
+  const transaction = await contract.registerOrganisation(name);
+  const receipt = await transaction.wait();
+  return receipt.transactionHash;
 }
 
 export async function getOrganisation(orgId) {
