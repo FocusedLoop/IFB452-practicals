@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import { OrgRegistryABI } from './abis';
 
-const ORG_REGISTRY_ADDRESS = '0xYOUR_ORG_REGISTRY_ADDRESS';
+const ORG_REGISTRY_ADDRESS = import.meta.env.VITE_ORG_REGISTRY_ADDRESS;
 
 let orgRegistry;
 

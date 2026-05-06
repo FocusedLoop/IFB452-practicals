@@ -2,3 +2,4 @@
 *.states*
 *artifacts*
 *deployment.txt*
+package-lock.json
