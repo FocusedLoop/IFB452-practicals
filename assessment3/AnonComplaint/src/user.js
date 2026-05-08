@@ -1,8 +1,7 @@
 import { ethers } from "ethers";
-import { UserRegistryABI } from "./abis";
+import UserRegistryABI from "./abis/user.json";
 
 const USER_REGISTRY_ADDRESS = import.meta.env.VITE_USER_REGISTRY_ADDRESS;
-
 let userRegistry;
 
 async function getContract() {

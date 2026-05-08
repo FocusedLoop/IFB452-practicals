@@ -1,5 +1,6 @@
-import { registerOrganisation, getOrganisation } from './organisation';
+import { registerOrganisation, getOrganisation, listOrganisations } from './organisation';
 import { registerUser, getUser, getUserIdByWallet } from './user';
+import { submitComplaint, getComplaints } from './complaint';
 import { createSignal, onMount } from 'solid-js';
 import { ethers } from 'ethers';
 import './app.css';
@@ -11,12 +12,17 @@ const App = () => {
 
   // Organisation
   const [orgName, setOrgName] = createSignal('');
-  const [orgId, setOrgId] = createSignal('');
+  const [orgAbn, setOrgAbn] = createSignal('');
 
   // User
   const [userName, setUserName] = createSignal('');
   const [userId, setUserId] = createSignal('');
   const [userDisplayName, setUserDisplayName] = createSignal('');
+
+  // Complaint
+  const [complaintOrgAbn, setComplaintOrgAbn] = createSignal('');
+  const [complaintScore, setComplaintScore] = createSignal('');
+  const [complaintHash, setComplaintHash] = createSignal('');
 
   // Auto detect user on load
   // NOTE: MAY REMOVE FOR DEMONSTRATION PURPOSES TO SHOW REGISTRATION FUNCTIONALITY AND ALLOW FOR DIFFERENT USERS ON THE SAME MACHINE
@@ -60,16 +66,22 @@ const App = () => {
       <div class="grid">
         <div class="section">
           <h2>Organisation Registry</h2>
+          <input placeholder="ABN (11 digits)" value={orgAbn()} onInput={e => setOrgAbn(e.target.value)} />
           <input placeholder="Organisation name" value={orgName()} onInput={e => setOrgName(e.target.value)} />
           <button onClick={() => run_action(async () => {
-            const tx = await registerOrganisation(orgName());
+            const tx = await registerOrganisation(orgAbn(), orgName());
             setOutput('Organisation registered! Tx: ' + tx);
           })}>Register Organisation</button>
 
-          <input placeholder="Organisation ID" value={orgId()} onInput={e => setOrgId(e.target.value)} />
           <button onClick={() => run_action(async () => {
-            const org = await getOrganisation(orgId());
-            setOutput(`Org #${org.id}\nName: ${org.name}\nOwner: ${org.owner}`);
+            const orgs = await listOrganisations();
+            setOutput(orgs.map(org => `ABN: ${org.abn} | ${org.name}`).join('\n'));
+          })}>List Organisations</button>
+
+          <input placeholder="ABN to look up" value={orgAbn()} onInput={e => setOrgAbn(e.target.value)} />
+          <button onClick={() => run_action(async () => {
+            const org = await getOrganisation(orgAbn());
+            setOutput(`ABN: ${org.abn}\nName: ${org.name}\nOwner: ${org.owner}`);
           })}>Get Organisation</button>
         </div>
         <div class="section">
@@ -85,6 +97,21 @@ const App = () => {
             setOutput('User registered!\nName: ' + userName() + '\nYour ID: ' + id + '\nTx: ' + tx);
           })}>Register User</button>
           <p>{userId() ? `Logged in as ${userDisplayName()} (User #${userId()})` : 'Not registered'}</p>
+        </div>
+        <div class="section">
+          <h2>Complaints</h2>
+          <input placeholder="Organisation ABN" value={complaintOrgAbn()} onInput={e => setComplaintOrgAbn(e.target.value)} />
+          <input placeholder="Score (1-10)" value={complaintScore()} onInput={e => setComplaintScore(e.target.value)} />
+          <input placeholder="Content hash (IPFS)" value={complaintHash()} onInput={e => setComplaintHash(e.target.value)} />
+          <button onClick={() => run_action(async () => {
+            const tx = await submitComplaint(userId(), complaintOrgAbn(), complaintScore(), complaintHash());
+            setOutput('Complaint submitted! Tx: ' + tx);
+          })}>Submit Complaint</button>
+
+          <button onClick={() => run_action(async () => {
+            const complaints = await getComplaints(complaintOrgAbn());
+            setOutput(complaints.map(c => `#${c.id} | Score: ${c.score} | Hash: ${c.contentHash}`).join('\n'));
+          })}>Get Complaints</button>
         </div>
       </div>
 
