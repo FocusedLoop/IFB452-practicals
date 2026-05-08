@@ -3,10 +3,10 @@ pragma solidity 0.8.19;
 
 // TODO: Add better error handling
 contract ReputationCalculation {
-
     address public owner;
     address public complaintRegistry;
 
+    // Mapping from organisation ID to total score and review count
     mapping(uint => uint) public totalScore;
     mapping(uint => uint) public reviewCount;
     mapping(uint256 => mapping(uint256 => bool)) public hasRated;

@@ -5,8 +5,9 @@ import { ethers } from 'ethers';
 import './app.css';
 
 const App = () => {
-  const [output, setOutput] = createSignal('');
-  const [loading, setLoading] = createSignal(false);
+  // App state
+  const [output, setOutput] = createSignal(''); // Output message
+  const [loading, setLoading] = createSignal(false); // Handle loading
 
   // Organisation
   const [orgName, setOrgName] = createSignal('');
@@ -18,6 +19,7 @@ const App = () => {
   const [userDisplayName, setUserDisplayName] = createSignal('');
 
   // Auto detect user on load
+  // NOTE: MAY REMOVE FOR DEMONSTRATION PURPOSES TO SHOW REGISTRATION FUNCTIONALITY AND ALLOW FOR DIFFERENT USERS ON THE SAME MACHINE
   onMount(async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send('eth_requestAccounts', []);
@@ -33,13 +35,14 @@ const App = () => {
     }
   });
 
-  async function run(fn) {
+  // Async function runner to handle the app state while waiting for transactions to process
+  async function run_action(function_to_run) {
     setLoading(true);
     setOutput('');
     try {
-      await fn();
-    } catch (e) {
-      setOutput('Error: ' + (e.reason ?? e.message));
+      await function_to_run();
+    } catch (error) {
+      setOutput('Error: ' + (error.reason ?? error.message));
     } finally {
       setLoading(false);
     }
@@ -58,13 +61,13 @@ const App = () => {
         <div class="section">
           <h2>Organisation Registry</h2>
           <input placeholder="Organisation name" value={orgName()} onInput={e => setOrgName(e.target.value)} />
-          <button onClick={() => run(async () => {
+          <button onClick={() => run_action(async () => {
             const tx = await registerOrganisation(orgName());
             setOutput('Organisation registered! Tx: ' + tx);
           })}>Register Organisation</button>
 
           <input placeholder="Organisation ID" value={orgId()} onInput={e => setOrgId(e.target.value)} />
-          <button onClick={() => run(async () => {
+          <button onClick={() => run_action(async () => {
             const org = await getOrganisation(orgId());
             setOutput(`Org #${org.id}\nName: ${org.name}\nOwner: ${org.owner}`);
           })}>Get Organisation</button>
@@ -72,7 +75,7 @@ const App = () => {
         <div class="section">
           <h2>User Registry</h2>
           <input placeholder="Your name" value={userName()} onInput={e => setUserName(e.target.value)} />
-          <button onClick={() => run(async () => {
+          <button onClick={() => run_action(async () => {
             const tx = await registerUser(userName());
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const wallet = await provider.getSigner().getAddress();
