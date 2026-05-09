@@ -23,7 +23,6 @@ contract UserRegistry {
         // require(!isRegistered[msg.sender], "Wallet already in use");
         
         userCount++;
-
         users[userCount] = User({
             id: userCount,
             name: name,

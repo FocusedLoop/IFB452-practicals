@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-// TODO ADD ABN AS SOURCE OF ID
 // TODO ADD USER AS ADMIN OF ORGANISATION
 contract OrganisationRegistry {
     struct Organisation {
@@ -43,7 +42,6 @@ contract OrganisationRegistry {
         return exists;
     }
 
-    // Debug
     // Check if an organisation exists by ABN
     function getOrganisation(uint256 abn) external view returns (uint256 id, string memory name, address owner)
     {

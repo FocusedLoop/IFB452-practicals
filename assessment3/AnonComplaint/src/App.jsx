@@ -1,7 +1,7 @@
 import { registerOrganisation, getOrganisation, listOrganisations } from './organisation';
 import { registerUser, getUser, getUserIdByWallet } from './user';
 import { submitComplaint, getComplaints } from './complaint';
-import { createSignal, onMount } from 'solid-js';
+import { createSignal } from 'solid-js';
 import { ethers } from 'ethers';
 import './app.css';
 
@@ -22,24 +22,7 @@ const App = () => {
   // Complaint
   const [complaintOrgAbn, setComplaintOrgAbn] = createSignal('');
   const [complaintScore, setComplaintScore] = createSignal('');
-  const [complaintHash, setComplaintHash] = createSignal('');
-
-  // Auto detect user on load
-  // NOTE: MAY REMOVE FOR DEMONSTRATION PURPOSES TO SHOW REGISTRATION FUNCTIONALITY AND ALLOW FOR DIFFERENT USERS ON THE SAME MACHINE
-  onMount(async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send('eth_requestAccounts', []);
-    
-    const wallet = await provider.getSigner().getAddress();
-    const id = await getUserIdByWallet(wallet);
-
-    // If already registered, set details in the UI
-    if (id !== '0') {
-      setUserId(id);
-      const user = await getUser(id);
-      setUserDisplayName(user.name);
-    }
-  });
+  const [complaintReview, setComplaintReview] = createSignal('');
 
   // Async function runner to handle the app state while waiting for transactions to process
   async function run_action(function_to_run) {
@@ -53,8 +36,6 @@ const App = () => {
       setLoading(false);
     }
   }
-
-  // TODO: GO BACK OVER ONCE CONTRACTS ARE FULLY COMPLETE
 
   // Current main page for all contracts
   return (
@@ -81,7 +62,7 @@ const App = () => {
           <input placeholder="ABN to look up" value={orgAbn()} onInput={e => setOrgAbn(e.target.value)} />
           <button onClick={() => run_action(async () => {
             const org = await getOrganisation(orgAbn());
-            setOutput(`ABN: ${org.abn}\nName: ${org.name}\nOwner: ${org.owner}`);
+            setOutput(`ABN: ${org.abn}\nName: ${org.name}`);
           })}>Get Organisation</button>
         </div>
         <div class="section">
@@ -89,28 +70,31 @@ const App = () => {
           <input placeholder="Your name" value={userName()} onInput={e => setUserName(e.target.value)} />
           <button onClick={() => run_action(async () => {
             const tx = await registerUser(userName());
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const wallet = await provider.getSigner().getAddress();
-            const id = await getUserIdByWallet(wallet);
-            setUserId(id);
-            setUserDisplayName(userName());
-            setOutput('User registered!\nName: ' + userName() + '\nYour ID: ' + id + '\nTx: ' + tx);
+            setOutput('User registered!\nName: ' + userName() + '\nTx: ' + tx + '\nNote your User ID to log in.');
           })}>Register User</button>
-          <p>{userId() ? `Logged in as ${userDisplayName()} (User #${userId()})` : 'Not registered'}</p>
+
+          <input placeholder="Enter your User ID" value={userId()} onInput={event => { setUserId(event.target.value); setUserDisplayName(''); }} />
+          <button onClick={() => run_action(async () => {
+            const user = await getUser(userId());
+            setUserDisplayName(user.name);
+            setOutput('Logged in as ' + user.name + ' (User #' + userId() + ')');
+          })}>Log In</button>
+          <p>{userId() && userDisplayName() ? `Logged in as ${userDisplayName()}` : 'Not logged in'}</p>
         </div>
+        
         <div class="section">
           <h2>Complaints</h2>
           <input placeholder="Organisation ABN" value={complaintOrgAbn()} onInput={e => setComplaintOrgAbn(e.target.value)} />
           <input placeholder="Score (1-10)" value={complaintScore()} onInput={e => setComplaintScore(e.target.value)} />
-          <input placeholder="Content hash (IPFS)" value={complaintHash()} onInput={e => setComplaintHash(e.target.value)} />
+          <input placeholder="Review" value={complaintReview()} onInput={e => setComplaintReview(e.target.value)} />
           <button onClick={() => run_action(async () => {
-            const tx = await submitComplaint(userId(), complaintOrgAbn(), complaintScore(), complaintHash());
+            const tx = await submitComplaint(userId(), complaintOrgAbn(), complaintScore(), complaintReview());
             setOutput('Complaint submitted! Tx: ' + tx);
           })}>Submit Complaint</button>
 
           <button onClick={() => run_action(async () => {
             const complaints = await getComplaints(complaintOrgAbn());
-            setOutput(complaints.map(c => `#${c.id} | Score: ${c.score} | Hash: ${c.contentHash}`).join('\n'));
+            setOutput(complaints.map(complaint => `#${complaint.id} | Score: ${complaint.score} | Review: ${complaint.review}`).join('\n'));
           })}>Get Complaints</button>
         </div>
       </div>

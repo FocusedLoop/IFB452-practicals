@@ -32,7 +32,7 @@ export async function listOrganisations() {
 // Get by ABN
 export async function getOrganisation(desired_abn) {
   const contract = await getContract();
-  const [abn, name, owner] = await contract.getOrganisation(desired_abn);
-  const organisation = { abn: abn.toString(), name, owner };
+  const [abn, name] = await contract.getOrganisation(desired_abn);
+  const organisation = { abn: abn.toString(), name };
   return organisation;
 }

@@ -56,7 +56,7 @@
             {
                 "indexed": false,
                 "internalType": "string",
-                "name": "contentHash",
+                "name": "review",
                 "type": "string"
             }
         ],
@@ -113,7 +113,7 @@
             },
             {
                 "internalType": "string",
-                "name": "contentHash",
+                "name": "review",
                 "type": "string"
             },
             {
@@ -212,7 +212,7 @@
                     },
                     {
                         "internalType": "string",
-                        "name": "contentHash",
+                        "name": "review",
                         "type": "string"
                     },
                     {
@@ -274,7 +274,7 @@
             },
             {
                 "internalType": "string",
-                "name": "contentHash",
+                "name": "review",
                 "type": "string"
             }
         ],

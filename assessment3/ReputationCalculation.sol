@@ -15,6 +15,7 @@ contract ReputationCalculation {
     event ScoreAdded(uint256 indexed orgId, uint256 indexed userId, uint256 score);
     event ScoreUpdated(uint256 indexed orgId, uint256 indexed userId, uint256 oldScore, uint256 newScore);
 
+    // Lock in the ComplaintRegistry address to restrict who can update scores
     modifier onlyComplaintRegistry() {
         require(msg.sender == complaintRegistry, "Only ComplaintRegistry can call");
         _;
@@ -25,11 +26,10 @@ contract ReputationCalculation {
     }
 
     // Set the ComplaintRegistry address
-    function setComplaintRegistry(address _complaintRegistry) external {
+    function setComplaintRegistry(address desired_complaintRegistry) external {
         require(msg.sender == owner, "Only owner can set");
-        require(_complaintRegistry != address(0), "Invalid address");
-        require(complaintRegistry == address(0), "Already set");
-        complaintRegistry = _complaintRegistry;
+        require(desired_complaintRegistry != address(0), "Invalid address"); // Added check for zero address
+        complaintRegistry = desired_complaintRegistry;
     }
 
     // Update score for an organisation by a user

@@ -14,9 +14,9 @@ async function getContract() {
 }
 
 // Submit complaint for an organisation
-export async function submitComplaint(userId, orgAbn, score, contentHash) {
+export async function submitComplaint(userId, orgAbn, score, review) {
   const contract = await getContract();
-  const tx = await contract.submitComplaint(userId, orgAbn, score, contentHash);
+  const tx = await contract.submitComplaint(userId, orgAbn, score, review);
   const receipt = await tx.wait();
   const transactionHash = receipt.transactionHash;
   return transactionHash;
@@ -26,14 +26,14 @@ export async function submitComplaint(userId, orgAbn, score, contentHash) {
 export async function getComplaints(orgAbn) {
   const contract = await getContract();
   const complaints = await contract.getComplaints(orgAbn);
-  const complaintList = complaints.map(c => ({
-    id: c.id.toString(),
-    userId: c.userId.toString(),
-    orgAbn: c.orgAbn.toString(),
-    score: c.score.toString(),
-    timestamp: c.timestamp.toString(),
-    contentHash: c.contentHash,
-    reporter: c.reporter
+  const complaintList = complaints.map(complaint => ({
+    id: complaint.id.toString(),
+    userId: complaint.userId.toString(),
+    orgAbn: complaint.orgAbn.toString(),
+    score: complaint.score.toString(),
+    timestamp: complaint.timestamp.toString(),
+    review: complaint.review,
+    reporter: complaint.reporter
   }));
   return complaintList;
 }

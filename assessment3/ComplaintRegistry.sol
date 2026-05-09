@@ -12,7 +12,7 @@ contract ComplaintRegistry {
         uint orgAbn;
         uint score;
         uint timestamp;
-        string contentHash;
+        string review;
         address reporter;
     }
 
@@ -33,7 +33,7 @@ contract ComplaintRegistry {
         uint256 indexed orgAbn,
         uint256 score,
         address reporter,
-        string contentHash 
+        string review 
     );
 
     // Initialize with addresses of the other contracts and set requirements
@@ -48,29 +48,28 @@ contract ComplaintRegistry {
     }
 
     // Submit a complaint about an organisation
-    function submitComplaint(uint256 userId, uint256 orgAbn, uint256 score, string memory contentHash) external returns (uint256) {
-        require(bytes(contentHash).length > 0, "Complaint hash required");
+    function submitComplaint(uint256 userId, uint256 orgAbn, uint256 score, string memory review) external returns (uint256) {
+        require(bytes(review).length > 0, "Review required");
         require(userRegistry.userExists(userId), "Invalid user");
         require(organisationRegistry.organisationExists(orgAbn), "Organisation does not exist");
 
         complaintCount++;
-
         complaints[complaintCount] = Complaint({
             id: complaintCount,
             userId: userId,
             orgAbn: orgAbn,
             score: score,
             timestamp: block.timestamp,
-            contentHash: contentHash,
+            review: review,
             reporter: msg.sender
         });
 
+        
         complaintsByOrganisation[orgAbn].push(complaintCount);
         complaintsByUser[userId].push(complaintCount);
-
         reputationCalculation.updateScore(orgAbn, userId, score);
 
-        emit ComplaintSubmitted(complaintCount, userId, orgAbn, score, msg.sender, contentHash);
+        emit ComplaintSubmitted(complaintCount, userId, orgAbn, score, msg.sender, review);
 
         return complaintCount;
     }
