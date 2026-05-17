@@ -4,9 +4,9 @@ pragma solidity 0.8.19;
 // TODO ADD USER AS ADMIN OF ORGANISATION
 contract OrganisationRegistry {
     struct Organisation {
-        uint abn;
+        uint abn; // TODO LOOK AT BETTER NAMING SCHEMA SHOULD SUPPORT EIN, IRD
         string name;
-        address owner;
+        address owner; // TODO: ADD USER ONLY REGISTRATION
     }
 
     // Mapping from ABN to Organisation details
@@ -18,7 +18,7 @@ contract OrganisationRegistry {
     
     function registerOrganisation(uint256 abn, string memory name) external returns (uint256) {
         require(bytes(name).length > 0, "Organisation name required");
-        require(abn >= 10000000000 && abn <= 99999999999, "Invalid ABN");
+        require(abn >= 10000000000 && abn <= 99999999999, "Invalid ABN"); // TODO: MAKE BETTER ABN VALIDATION
         require(!organisationExists(abn), "ABN already registered");
 
         // Register Organisation
@@ -47,7 +47,7 @@ contract OrganisationRegistry {
     {
         require(organisationExists(abn), "Organisation does not exist");
         Organisation memory org = organisations[abn];
-        return (org.abn, org.name, org.owner);
+        return (org.abn, org.name, org.owner); // REMOVE OWNER
     }
 
     // List all organisations

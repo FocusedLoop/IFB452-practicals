@@ -10,7 +10,7 @@ contract ReputationCalculation {
     mapping(uint => uint) public totalScore;
     mapping(uint => uint) public reviewCount;
     mapping(uint256 => mapping(uint256 => bool)) public hasRated;
-    mapping(uint256 => mapping(uint256 => uint256)) public userRating;
+    mapping(uint256 => mapping(uint256 => uint256)) public userRating; // Per user
 
     event ScoreAdded(uint256 indexed orgId, uint256 indexed userId, uint256 score);
     event ScoreUpdated(uint256 indexed orgId, uint256 indexed userId, uint256 oldScore, uint256 newScore);
@@ -27,6 +27,7 @@ contract ReputationCalculation {
 
     // Set the ComplaintRegistry address
     function setComplaintRegistry(address desired_complaintRegistry) external {
+        //require(complaintRegistry == address(0), "Complaint registry already set"); // Can only set address once
         require(msg.sender == owner, "Only owner can set");
         require(desired_complaintRegistry != address(0), "Invalid address"); // Added check for zero address
         complaintRegistry = desired_complaintRegistry;

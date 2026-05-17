@@ -5,6 +5,8 @@ import "./OrganisationRegistry.sol";
 import "./UserRegistry.sol";
 import "./ReputationCalculation.sol";
 
+//TODO: ALL CONTRACTS OPTIMIZE USE OF MEMORY TO CALLDATA
+
 contract ComplaintRegistry {
     struct Complaint {
         uint id;
@@ -21,7 +23,7 @@ contract ComplaintRegistry {
     // Mapping from complaint ID to Complaint details
     mapping(uint256 => Complaint) public complaints;
     mapping(uint256 => uint256[]) public complaintsByOrganisation;
-    mapping(uint256 => uint256[]) public complaintsByUser;
+    mapping(uint256 => uint256[]) public complaintsByUser; // POTENTIALLY REMOVE?
 
     OrganisationRegistry public organisationRegistry;
     UserRegistry public userRegistry;
@@ -48,6 +50,7 @@ contract ComplaintRegistry {
     }
 
     // Submit a complaint about an organisation
+    // TODO: BETTER HANDLING FOR A USER CHANGING A COMPLAINT
     function submitComplaint(uint256 userId, uint256 orgAbn, uint256 score, string memory review) external returns (uint256) {
         require(bytes(review).length > 0, "Review required");
         require(userRegistry.userExists(userId), "Invalid user");
