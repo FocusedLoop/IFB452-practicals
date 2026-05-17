@@ -25,9 +25,3 @@ export async function getUser(userId) {
   const [id, name, wallet] = await contract.getUser(userId);
   return { id: id.toString(), name, wallet };
 }
-
-export async function getUserIdByWallet(walletAddress) {
-  const contract = await getContract();
-  const id = await contract.walletToUserId(walletAddress);
-  return id.toString();
-}

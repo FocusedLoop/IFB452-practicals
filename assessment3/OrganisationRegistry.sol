@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-// TODO ADD USER AS ADMIN OF ORGANISATION
+// TODO ONLY ALLOW USERS TO REGISTER ORGANISATIONS WITH NO LINKING
 contract OrganisationRegistry {
     struct Organisation {
         uint abn; // TODO LOOK AT BETTER NAMING SCHEMA SHOULD SUPPORT EIN, IRD

@@ -7,7 +7,7 @@ let orgRegistry;
 async function getContract() {
   if (orgRegistry) return orgRegistry;
   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  await provider.send('eth_requestAccounts', []);
+  await provider.send("eth_requestAccounts", []);
   const signer = provider.getSigner();
   orgRegistry = new ethers.Contract(ORG_REGISTRY_ADDRESS, OrgRegistryABI, signer);
   return orgRegistry;
