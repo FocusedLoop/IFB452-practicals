@@ -1,5 +1,5 @@
-import { ethers } from 'ethers';
-import ReputationABI from './abis/reputation.json';
+import { ethers } from "ethers";
+import ReputationABI from "./abis/reputation.json";
 
 const REPUTATION_ADDRESS = import.meta.env.VITE_REPUTATION_CALCULATION_ADDRESS;
 let reputationContract;
