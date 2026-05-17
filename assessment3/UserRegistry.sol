@@ -40,7 +40,6 @@ contract UserRegistry {
 
     // TODO: REFACTOR
     // Debug
-    // Get user details by ID
     function getUser(uint256 userId) external view returns (uint256 id, string memory name)
     {
         require(userExists(userId), "User does not exist");
