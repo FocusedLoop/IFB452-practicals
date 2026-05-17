@@ -9,11 +9,11 @@ contract UserRegistry {
     }
 
     uint256 public userCount;
-    mapping(uint256 => User) public users;
-    mapping(address => bool) public isRegistered;
-    mapping(address => uint256) public walletToUserId;
+    mapping(uint256 => User) private users;
+    mapping(address => bool) private  isRegistered;
+    mapping(address => uint256) private walletToUserId;
 
-    event UserRegistered(uint256 indexed userId, string name, address indexed wallet);
+    event UserRegistered(uint256 indexed userId, string name);
 
     // Register a new user
     function registerUser(string memory name) external returns (uint256) {
@@ -34,19 +34,18 @@ contract UserRegistry {
         // isRegistered[msg.sender] = true;
         // walletToUserId[msg.sender] = userCount;
 
-        emit UserRegistered(userCount, name, msg.sender);
+        emit UserRegistered(userCount, name);
         return userCount;
     }
 
     // TODO: REFACTOR
     // Debug
     // Get user details by ID
-    function getUser(uint256 userId) external view
-        returns (uint256 id, string memory name, address wallet)
+    function getUser(uint256 userId) external view returns (uint256 id, string memory name)
     {
         require(userExists(userId), "User does not exist");
         User memory user = users[userId];
-        return (user.id, user.name, user.wallet);
+        return (user.id, user.name);
     }
 
     // Check if a user exists by ID

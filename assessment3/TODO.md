@@ -1,11 +1,11 @@
 TODO:
     All Contracts:
         - Joshua: Replace excesive use of memory with calldata
-        - Joshua: Remove traces of owner from contracts
+        - Joshua(DONE): Remove traces of user from contracts
 
     Reputation:
-        - Joshua: Better Error handling for address setting
-        - Joshua: Add back only one address
+        - Joshua(DONE): Better Error handling for address setting
+        - Joshua(DONE): Add back only one address
         - Mikayla: Add elo and organisation rankings
     
     Complaint:

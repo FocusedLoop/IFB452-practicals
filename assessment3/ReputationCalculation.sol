@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-// TODO: Add better error handling
 contract ReputationCalculation {
     address public owner;
     address public complaintRegistry;
@@ -9,11 +8,11 @@ contract ReputationCalculation {
     // Mapping from organisation ID to total score and review count
     mapping(uint => uint) public totalScore;
     mapping(uint => uint) public reviewCount;
-    mapping(uint256 => mapping(uint256 => bool)) public hasRated;
-    mapping(uint256 => mapping(uint256 => uint256)) public userRating; // Per user
+    mapping(uint256 => mapping(uint256 => bool)) private hasRated;
+    mapping(uint256 => mapping(uint256 => uint256)) private userRating; // Per user
 
-    event ScoreAdded(uint256 indexed orgId, uint256 indexed userId, uint256 score);
-    event ScoreUpdated(uint256 indexed orgId, uint256 indexed userId, uint256 oldScore, uint256 newScore);
+    event ScoreAdded(uint256 indexed orgId, uint256 userId, uint256 score);
+    event ScoreUpdated(uint256 indexed orgId, uint256 userId, uint256 oldScore, uint256 newScore);
 
     // Lock in the ComplaintRegistry address to restrict who can update scores
     modifier onlyComplaintRegistry() {
@@ -26,16 +25,20 @@ contract ReputationCalculation {
     }
 
     // Set the ComplaintRegistry address
-    function setComplaintRegistry(address desired_complaintRegistry) external {
-        //require(complaintRegistry == address(0), "Complaint registry already set"); // Can only set address once
+    function setComplaintRegistry(address desired_complaintRegistry) external 
+    {
+        // Added check for zero address, check to ensure address can only be set once and restrict owner
+        require(desired_complaintRegistry != address(0), "Invalid address"); //
+        require(complaintRegistry == address(0), "Complaint registry already set");
         require(msg.sender == owner, "Only owner can set");
-        require(desired_complaintRegistry != address(0), "Invalid address"); // Added check for zero address
+
+        // Set the complaint registry address and remove traces of ownership
         complaintRegistry = desired_complaintRegistry;
+        delete owner;
     }
 
     // Update score for an organisation by a user
-    function updateExistingScore (uint orgId, uint256 userId, uint newScore) private 
-        returns (uint oldScore) 
+    function updateExistingScore (uint orgId, uint256 userId, uint newScore) private returns (uint oldScore) 
     {
         oldScore = userRating[orgId][userId];
         totalScore[orgId] = totalScore[orgId] - oldScore + newScore;
@@ -47,6 +50,7 @@ contract ReputationCalculation {
     function updateScore(uint orgId, uint256 userId, uint score) public onlyComplaintRegistry {
         require(score >= 1 && score <= 10, "Score must be between 1 and 10");
 
+        // If the user has already rated, update their score, otherwise add a new score
         if (hasRated[orgId][userId]) {
             uint oldScore = updateExistingScore(orgId, userId, score);
 

@@ -15,15 +15,13 @@ contract ComplaintRegistry {
         uint score;
         uint timestamp;
         string review;
-        address reporter;
     }
 
     uint256 public complaintCount;
 
     // Mapping from complaint ID to Complaint details
-    mapping(uint256 => Complaint) public complaints;
-    mapping(uint256 => uint256[]) public complaintsByOrganisation;
-    mapping(uint256 => uint256[]) public complaintsByUser; // POTENTIALLY REMOVE?
+    mapping(uint256 => Complaint) private complaints;
+    mapping(uint256 => uint256[]) private complaintsByOrganisation;
 
     OrganisationRegistry public organisationRegistry;
     UserRegistry public userRegistry;
@@ -34,12 +32,12 @@ contract ComplaintRegistry {
         uint256 indexed userId,
         uint256 indexed orgAbn,
         uint256 score,
-        address reporter,
         string review 
     );
 
     // Initialize with addresses of the other contracts and set requirements
-    constructor (address organisationRegistryAddress, address userRegistryAddress, address reputationCalculationAddress) {
+    constructor (address organisationRegistryAddress, address userRegistryAddress, address reputationCalculationAddress)
+    {
         require(organisationRegistryAddress != address(0), "Invalid org registry");
         require(userRegistryAddress != address(0), "Invalid user registry");
         require(reputationCalculationAddress != address(0), "Invalid reputation contract");
@@ -51,11 +49,14 @@ contract ComplaintRegistry {
 
     // Submit a complaint about an organisation
     // TODO: BETTER HANDLING FOR A USER CHANGING A COMPLAINT
-    function submitComplaint(uint256 userId, uint256 orgAbn, uint256 score, string memory review) external returns (uint256) {
+    function submitComplaint(uint256 userId, uint256 orgAbn, uint256 score, string memory review) external returns (uint256)
+    {
+        require(reputationCalculation.complaintRegistry() == address(this), "ReputationCalculation Contract must reference this contract");
         require(bytes(review).length > 0, "Review required");
         require(userRegistry.userExists(userId), "Invalid user");
         require(organisationRegistry.organisationExists(orgAbn), "Organisation does not exist");
 
+        // Create complaint and update mappings
         complaintCount++;
         complaints[complaintCount] = Complaint({
             id: complaintCount,
@@ -63,22 +64,21 @@ contract ComplaintRegistry {
             orgAbn: orgAbn,
             score: score,
             timestamp: block.timestamp,
-            review: review,
-            reporter: msg.sender
+            review: review
         });
 
-        
+        // Track complaints by organisation and update reputation
         complaintsByOrganisation[orgAbn].push(complaintCount);
-        complaintsByUser[userId].push(complaintCount);
         reputationCalculation.updateScore(orgAbn, userId, score);
 
-        emit ComplaintSubmitted(complaintCount, userId, orgAbn, score, msg.sender, review);
+        emit ComplaintSubmitted(complaintCount, userId, orgAbn, score, review);
 
         return complaintCount;
     }
 
     // Get complaints for an organisation given its ID
-    function getComplaints(uint256 orgAbn) external view returns (Complaint[] memory) {
+    function getComplaints(uint256 orgAbn) external view returns (Complaint[] memory)
+    {
         require(organisationRegistry.organisationExists(orgAbn), "Organisation does not exist");
         uint256[] memory ids = complaintsByOrganisation[orgAbn];
         Complaint[] memory result = new Complaint[](ids.length);
