@@ -4,55 +4,60 @@ pragma solidity 0.8.19;
 // TODO ONLY ALLOW USERS TO REGISTER ORGANISATIONS WITH NO LINKING
 contract OrganisationRegistry {
     struct Organisation {
-        uint abn; // TODO LOOK AT BETTER NAMING SCHEMA SHOULD SUPPORT EIN, IRD
+        uint registrationNumber;
         string name;
     }
 
-    // Mapping from ABN to Organisation details
+    // Mapping from Organisation registration number to Organisation details
     uint256 public organisationCount;
     mapping(uint256 => Organisation) private organisations;
-    Organisation[] private abnList;
+    Organisation[] private organisationList;
 
-    event OrganisationRegistered(uint256 indexed orgAbn, string name);
+    event OrganisationRegistered(uint256 indexed orgRegistrationNumber, string name);
     
-    function registerOrganisation(uint256 abn, string memory name) external returns (uint256)
+    function registerOrganisation(uint256 registrationNumber, string calldata name) external returns (uint256)
     {
         require(bytes(name).length > 0, "Organisation name required");
-        require(abn >= 10000000000 && abn <= 99999999999, "Invalid ABN"); // TODO: MAKE BETTER ABN VALIDATION
-        require(!organisationExists(abn), "ABN already registered");
+        require(isValidRegistrationNumber(registrationNumber), "Invalid registration number");
+        require(!organisationExists(registrationNumber), "Registration number already registered");
 
         // Register Organisation
-        organisations[abn] = Organisation({
-            abn: abn,
+        organisations[registrationNumber] = Organisation({
+            registrationNumber: registrationNumber,
             name: name
         });
 
-        // Increment organisation count and track ABN
+        // Increment organisation count and track registrationNumber
         organisationCount++;
-        abnList.push(organisations[abn]);
+        organisationList.push(organisations[registrationNumber]);
 
-        emit OrganisationRegistered(abn, name);
-        return abn;
+        emit OrganisationRegistered(registrationNumber, name);
+        return registrationNumber;
     }
 
-    // Check if an organisation exists by ABN
-    function organisationExists(uint256 abn) public view returns (bool)
+    // Validate registration number (example: ABN or ACN format)
+    function isValidRegistrationNumber(uint256 registrationNumber) internal pure returns (bool) {
+        return registrationNumber >= 10000000 && registrationNumber <= 999999999999999;
+    }
+
+    // Check if an organisation exists by registration number
+    function organisationExists(uint256 registrationNumber) public view returns (bool)
     {
-        bool exists = organisations[abn].abn != 0;
+        bool exists = organisations[registrationNumber].registrationNumber != 0;
         return exists;
     }
 
-    // Check if an organisation exists by ABN
-    function getOrganisation(uint256 abn) external view returns (uint256 id, string memory name)
+    // Check if an organisation exists by registration number
+    function getOrganisation(uint256 registrationNumber) external view returns (uint256 id, string memory name)
     {
-        require(organisationExists(abn), "Organisation does not exist");
-        Organisation memory org = organisations[abn];
-        return (org.abn, org.name);
+        require(organisationExists(registrationNumber), "Organisation does not exist");
+        Organisation memory org = organisations[registrationNumber];
+        return (org.registrationNumber, org.name);
     }
 
     // List all organisations
     function listOrganisations() external view returns (Organisation[] memory)
     {
-        return abnList;
+        return organisationList;
     }
 }

@@ -1,6 +1,6 @@
 TODO:
     All Contracts:
-        - Joshua: Replace excesive use of memory with calldata
+        - Joshua(DONE): Replace excesive use of memory with calldata
         - Joshua(DONE): Remove traces of user from contracts
 
     Reputation:
@@ -13,7 +13,7 @@ TODO:
     
     Organisation:
         - Mikayla: Only allow registered users to add organisations
-        - Joshua: Better ABN validation maybe allow for other ABN country equivalents
+        - Joshua(DONE): Better ABN validation maybe allow for other ABN country equivalents
     
     User:
         - Joshua: Uncommented the debugs, sections of code commented out for testing purposes (will need code for final submission)

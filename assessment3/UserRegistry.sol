@@ -16,7 +16,7 @@ contract UserRegistry {
     event UserRegistered(uint256 indexed userId, string name);
 
     // Register a new user
-    function registerUser(string memory name) external returns (uint256) {
+    function registerUser(string calldata name) external returns (uint256) {
         require(bytes(name).length > 0, "User name required");
 
         // DEBUG: COMMENT OUT FOR DEMONSTRATION AND TESTING PURPOSES

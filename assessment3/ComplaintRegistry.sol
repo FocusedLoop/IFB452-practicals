@@ -5,13 +5,11 @@ import "./OrganisationRegistry.sol";
 import "./UserRegistry.sol";
 import "./ReputationCalculation.sol";
 
-//TODO: ALL CONTRACTS OPTIMIZE USE OF MEMORY TO CALLDATA
-
 contract ComplaintRegistry {
     struct Complaint {
         uint id;
         uint userId;
-        uint orgAbn;
+        uint orgRegistrationNumber;
         uint score;
         uint timestamp;
         string review;
@@ -30,7 +28,7 @@ contract ComplaintRegistry {
     event ComplaintSubmitted(
         uint256 indexed complaintId,
         uint256 indexed userId,
-        uint256 indexed orgAbn,
+        uint256 indexed orgRegistrationNumber,
         uint256 score,
         string review 
     );
@@ -49,38 +47,38 @@ contract ComplaintRegistry {
 
     // Submit a complaint about an organisation
     // TODO: BETTER HANDLING FOR A USER CHANGING A COMPLAINT
-    function submitComplaint(uint256 userId, uint256 orgAbn, uint256 score, string memory review) external returns (uint256)
+    function submitComplaint(uint256 userId, uint256 orgRegistrationNumber, uint256 score, string calldata review) external returns (uint256)
     {
         require(reputationCalculation.complaintRegistry() == address(this), "ReputationCalculation Contract must reference this contract");
         require(bytes(review).length > 0, "Review required");
         require(userRegistry.userExists(userId), "Invalid user");
-        require(organisationRegistry.organisationExists(orgAbn), "Organisation does not exist");
+        require(organisationRegistry.organisationExists(orgRegistrationNumber), "Organisation does not exist");
 
         // Create complaint and update mappings
         complaintCount++;
         complaints[complaintCount] = Complaint({
             id: complaintCount,
             userId: userId,
-            orgAbn: orgAbn,
+            orgRegistrationNumber: orgRegistrationNumber,
             score: score,
             timestamp: block.timestamp,
             review: review
         });
 
         // Track complaints by organisation and update reputation
-        complaintsByOrganisation[orgAbn].push(complaintCount);
-        reputationCalculation.updateScore(orgAbn, userId, score);
+        complaintsByOrganisation[orgRegistrationNumber].push(complaintCount);
+        reputationCalculation.updateScore(orgRegistrationNumber, userId, score);
 
-        emit ComplaintSubmitted(complaintCount, userId, orgAbn, score, review);
+        emit ComplaintSubmitted(complaintCount, userId, orgRegistrationNumber, score, review);
 
         return complaintCount;
     }
 
     // Get complaints for an organisation given its ID
-    function getComplaints(uint256 orgAbn) external view returns (Complaint[] memory)
+    function getComplaints(uint256 orgRegistrationNumber) external view returns (Complaint[] memory)
     {
-        require(organisationRegistry.organisationExists(orgAbn), "Organisation does not exist");
-        uint256[] memory ids = complaintsByOrganisation[orgAbn];
+        require(organisationRegistry.organisationExists(orgRegistrationNumber), "Organisation does not exist");
+        uint256[] memory ids = complaintsByOrganisation[orgRegistrationNumber];
         Complaint[] memory result = new Complaint[](ids.length);
         for (uint256 i = 0; i < ids.length; i++) {
             result[i] = complaints[ids[i]];
