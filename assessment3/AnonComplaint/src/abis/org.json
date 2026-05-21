@@ -5,7 +5,7 @@
             {
                 "indexed": true,
                 "internalType": "uint256",
-                "name": "orgAbn",
+                "name": "orgRegistrationNumber",
                 "type": "uint256"
             },
             {
@@ -13,12 +13,6 @@
                 "internalType": "string",
                 "name": "name",
                 "type": "string"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "owner",
-                "type": "address"
             }
         ],
         "name": "OrganisationRegistered",
@@ -28,36 +22,7 @@
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "abnList",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "abn",
-                "type": "uint256"
-            },
-            {
-                "internalType": "string",
-                "name": "name",
-                "type": "string"
-            },
-            {
-                "internalType": "address",
-                "name": "owner",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "abn",
+                "name": "registrationNumber",
                 "type": "uint256"
             }
         ],
@@ -72,11 +37,6 @@
                 "internalType": "string",
                 "name": "name",
                 "type": "string"
-            },
-            {
-                "internalType": "address",
-                "name": "owner",
-                "type": "address"
             }
         ],
         "stateMutability": "view",
@@ -90,18 +50,13 @@
                 "components": [
                     {
                         "internalType": "uint256",
-                        "name": "abn",
+                        "name": "registrationNumber",
                         "type": "uint256"
                     },
                     {
                         "internalType": "string",
                         "name": "name",
                         "type": "string"
-                    },
-                    {
-                        "internalType": "address",
-                        "name": "owner",
-                        "type": "address"
                     }
                 ],
                 "internalType": "struct OrganisationRegistry.Organisation[]",
@@ -129,7 +84,7 @@
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "abn",
+                "name": "registrationNumber",
                 "type": "uint256"
             }
         ],
@@ -148,36 +103,7 @@
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "organisations",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "abn",
-                "type": "uint256"
-            },
-            {
-                "internalType": "string",
-                "name": "name",
-                "type": "string"
-            },
-            {
-                "internalType": "address",
-                "name": "owner",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "abn",
+                "name": "registrationNumber",
                 "type": "uint256"
             },
             {

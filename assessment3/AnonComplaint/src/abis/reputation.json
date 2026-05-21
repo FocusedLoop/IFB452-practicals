@@ -14,7 +14,7 @@
                 "type": "uint256"
             },
             {
-                "indexed": true,
+                "indexed": false,
                 "internalType": "uint256",
                 "name": "userId",
                 "type": "uint256"
@@ -39,7 +39,7 @@
                 "type": "uint256"
             },
             {
-                "indexed": true,
+                "indexed": false,
                 "internalType": "uint256",
                 "name": "userId",
                 "type": "uint256"
@@ -93,30 +93,6 @@
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "hasRated",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [],
         "name": "owner",
         "outputs": [
@@ -152,7 +128,7 @@
         "inputs": [
             {
                 "internalType": "address",
-                "name": "_complaintRegistry",
+                "name": "desired_complaintRegistry",
                 "type": "address"
             }
         ],
@@ -201,30 +177,6 @@
         "name": "updateScore",
         "outputs": [],
         "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "userRating",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
         "type": "function"
     }
 ]

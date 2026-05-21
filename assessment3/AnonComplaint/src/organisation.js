@@ -1,5 +1,5 @@
-import { ethers } from 'ethers';
-import OrgRegistryABI from './abis/org.json';
+import { ethers } from "ethers";
+import OrgRegistryABI from "./abis/org.json";
 
 const ORG_REGISTRY_ADDRESS = import.meta.env.VITE_ORG_REGISTRY_ADDRESS;
 let orgRegistry;
@@ -13,10 +13,10 @@ async function getContract() {
   return orgRegistry;
 }
 
-// Register a new organisation with ABN
-export async function registerOrganisation(abn, name) {
+// Register a new organisation with organisation number and name
+export async function registerOrganisation(orgRegistrationNumber, name) {
   const contract = await getContract();
-  const transaction = await contract.registerOrganisation(abn, name);
+  const transaction = await contract.registerOrganisation(orgRegistrationNumber, name);
   const receipt = await transaction.wait();
   return receipt.transactionHash;
 }
@@ -25,14 +25,14 @@ export async function registerOrganisation(abn, name) {
 export async function listOrganisations() {
   const contract = await getContract();
   const orgs = await contract.listOrganisations();
-  const organisationList = orgs.map(org => ({ abn: org.abn.toString(), name: org.name, owner: org.owner }));
+  const organisationList = orgs.map(org => ({ registrationNumber: org.registrationNumber.toString(), name: org.name }))
   return organisationList;
 }
 
-// Get by ABN
-export async function getOrganisation(desired_abn) {
+// Get by orgRegistrationNumber
+export async function getOrganisation(desired_orgRegistrationNumber) {
   const contract = await getContract();
-  const [abn, name] = await contract.getOrganisation(desired_abn);
-  const organisation = { abn: abn.toString(), name };
+  const [registrationNumber, name] = await contract.getOrganisation(desired_orgRegistrationNumber);
+  const organisation = { registrationNumber: registrationNumber.toString(), name };
   return organisation;
 }

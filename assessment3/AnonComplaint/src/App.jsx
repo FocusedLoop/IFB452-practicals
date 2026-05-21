@@ -12,7 +12,7 @@ const App = () => {
 
   // Organisation
   const [orgName, setOrgName] = createSignal("");
-  const [orgAbn, setOrgAbn] = createSignal("");
+  const [orgRegistrationNumber, setOrgRegistrationNumber] = createSignal("");
 
   // User
   const [userName, setUserName] = createSignal("");
@@ -20,7 +20,7 @@ const App = () => {
   const [userDisplayName, setUserDisplayName] = createSignal("");
 
   // Complaint
-  const [complaintOrgAbn, setComplaintOrgAbn] = createSignal("");
+  const [complaintOrgRegistrationNumber, setComplaintOrgRegistrationNumber] = createSignal("");
   const [complaintScore, setComplaintScore] = createSignal("");
   const [complaintReview, setComplaintReview] = createSignal("");
 
@@ -47,23 +47,23 @@ const App = () => {
       <div class="grid">
         <div class="section">
           <h2>Organisation Registry</h2>
-          <input placeholder="ABN (11 digits)" value={orgAbn()} onInput={e => setOrgAbn(e.target.value)} />
+          <input placeholder="Business Registration Number (11 digits)" value={orgRegistrationNumber()} onInput={e => setOrgRegistrationNumber(e.target.value)} />
           <input placeholder="Organisation name" value={orgName()} onInput={e => setOrgName(e.target.value)} />
           <button onClick={() => run_action(async () => {
-            const transaction = await registerOrganisation(orgAbn(), orgName());
+            const transaction = await registerOrganisation(orgRegistrationNumber(), orgName());
             setOutput("Organisation registered! Tx: " + transaction);
           })}>Register Organisation</button>
 
           <button onClick={() => run_action(async () => {
             const orgs = await listOrganisations();
-            const rows = await Promise.all(orgs.map(async org => `ABN: ${org.abn} | ${org.name} | Score: ${await getScore(org.abn)}/10`));
+            const rows = await Promise.all(orgs.map(async org => `Organisation: ${org.name} | ${org.registrationNumber} | Score: ${await getScore(org.registrationNumber)}/10`));
             setOutput(rows.join("\n"));
           })}>List Organisations</button>
 
-          <input placeholder="ABN to look up" value={orgAbn()} onInput={e => setOrgAbn(e.target.value)} />
+          <input placeholder="Business Registration Number to look up" value={orgRegistrationNumber()} onInput={e => setOrgRegistrationNumber(e.target.value)} />
           <button onClick={() => run_action(async () => {
-            const org = await getOrganisation(orgAbn());
-            setOutput(`ABN: ${org.abn}\nName: ${org.name}`);
+            const org = await getOrganisation(orgRegistrationNumber());
+            setOutput(`Business Registration Number: ${org.registrationNumber}\nName: ${org.name}`);
           })}>Get Organisation</button>
         </div>
         <div class="section">
@@ -85,16 +85,16 @@ const App = () => {
         
         <div class="section">
           <h2>Complaints</h2>
-          <input placeholder="Organisation ABN" value={complaintOrgAbn()} onInput={e => setComplaintOrgAbn(e.target.value)} />
+          <input placeholder="Organisation Business Registration Number" value={complaintOrgRegistrationNumber()} onInput={e => setComplaintOrgRegistrationNumber(e.target.value)} />
           <input placeholder="Score (1-10)" value={complaintScore()} onInput={e => setComplaintScore(e.target.value)} />
           <input placeholder="Review" value={complaintReview()} onInput={e => setComplaintReview(e.target.value)} />
           <button onClick={() => run_action(async () => {
-            const transaction = await submitComplaint(userId(), complaintOrgAbn(), complaintScore(), complaintReview());
+            const transaction = await submitComplaint(userId(), complaintOrgRegistrationNumber(), complaintScore(), complaintReview());
             setOutput("Complaint submitted! Tx: " + transaction);
           })}>Submit Complaint</button>
 
           <button onClick={() => run_action(async () => {
-            const complaints = await getComplaints(complaintOrgAbn());
+            const complaints = await getComplaints(complaintOrgRegistrationNumber());
             setOutput(complaints.map(complaint => `#${complaint.id} | Score: ${complaint.score} | Review: ${complaint.review}`).join("\n"));
           })}>Get Complaints</button>
         </div>

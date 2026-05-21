@@ -22,6 +22,6 @@ export async function registerUser(name) {
 
 export async function getUser(userId) {
   const contract = await getContract();
-  const [id, name, wallet] = await contract.getUser(userId);
-  return { id: id.toString(), name, wallet };
+  const [id, name] = await contract.getUser(userId);
+  return { id: id.toString(), name };
 }

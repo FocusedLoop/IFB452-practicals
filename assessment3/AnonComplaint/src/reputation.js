@@ -13,8 +13,8 @@ async function getContract() {
   return reputationContract;
 }
 
-export async function getScore(orgAbn) {
+export async function getScore(orgRegistrationNumber) {
   const contract = await getContract();
-  const score = await contract.getScore(orgAbn);
+  const score = await contract.getScore(orgRegistrationNumber);
   return score.toString();
 }
