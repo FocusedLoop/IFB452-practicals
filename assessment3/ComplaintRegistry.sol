@@ -53,6 +53,7 @@ contract ComplaintRegistry {
         require(bytes(review).length > 0, "Review required");
         require(userRegistry.userExists(userId), "Invalid user");
         require(organisationRegistry.organisationExists(orgRegistrationNumber), "Organisation does not exist");
+        require(userRegistry.isOwner(userId, msg.sender), "Not your account");
 
         // Create complaint and update mappings
         complaintCount++;

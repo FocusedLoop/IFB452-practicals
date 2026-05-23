@@ -18,9 +18,7 @@ contract UserRegistry {
     // Register a new user
     function registerUser(string calldata name) external returns (uint256) {
         require(bytes(name).length > 0, "User name required");
-
-        // DEBUG: COMMENT OUT FOR DEMONSTRATION AND TESTING PURPOSES
-        // require(!isRegistered[msg.sender], "Wallet already in use");
+        require(!isRegistered[msg.sender], "Wallet already in use");
         
         userCount++;
         users[userCount] = User({
@@ -30,20 +28,25 @@ contract UserRegistry {
         });
 
         // Mark wallet as registered
-        // DEBUG: COMMENT OUT FOR DEMONSTRATION AND TESTING PURPOSES
-        // isRegistered[msg.sender] = true;
-        // walletToUserId[msg.sender] = userCount;
+        isRegistered[msg.sender] = true;
+        walletToUserId[msg.sender] = userCount;
 
         emit UserRegistered(userCount, name);
         return userCount;
     }
 
-    // Debug
+    // Retrieve user details by ID
     function getUser(uint256 userId) external view returns (uint256 id, string memory name)
     {
         require(userExists(userId), "User does not exist");
         User memory user = users[userId];
         return (user.id, user.name);
+    }
+
+    // Check if a wallet address is the owner of a user ID
+    function isOwner(uint256 userId, address wallet) external view returns (bool) {
+        require(userExists(userId), "User does not exist");
+        return users[userId].wallet == wallet;
     }
 
     // Check if a user exists by ID

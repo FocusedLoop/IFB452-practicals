@@ -20,8 +20,13 @@ export async function registerUser(name) {
   return receipt.transactionHash;
 }
 
-export async function getUser(userId) {
-  const contract = await getContract();
-  const [id, name] = await contract.getUser(userId);
-  return { id: id.toString(), name };
+// Verify the logged in wallet owns the User ID and return user details
+export async function verifyLogin(userId) {
+    const contract = await getContract();
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signerAddress = await provider.getSigner().getAddress();
+    const owned = await contract.isOwner(userId, signerAddress);
+    if (!owned) throw new Error("This User ID does not belong to your wallet");
+    const [id, name] = await contract.getUser(userId);
+    return { id: id.toString(), name };
 }

@@ -1,6 +1,6 @@
 import { registerOrganisation, getOrganisation, listOrganisations } from "./organisation";
 import { submitComplaint, getComplaints } from "./complaint";
-import { registerUser, getUser } from "./user";
+import { registerUser, verifyLogin } from "./user";
 import { createSignal } from "solid-js";
 import { getScore } from "./reputation";
 import "./app.css";
@@ -76,7 +76,7 @@ const App = () => {
 
           <input placeholder="Enter your User ID" value={userId()} onInput={event => { setUserId(event.target.value); setUserDisplayName(""); }} />
           <button onClick={() => run_action(async () => {
-            const user = await getUser(userId());
+            const user = await verifyLogin(userId());
             setUserDisplayName(user.name);
             setOutput("Logged in as " + user.name + " (User #" + userId() + ")");
           })}>Log In</button>
@@ -89,6 +89,7 @@ const App = () => {
           <input placeholder="Score (1-10)" value={complaintScore()} onInput={e => setComplaintScore(e.target.value)} />
           <input placeholder="Review" value={complaintReview()} onInput={e => setComplaintReview(e.target.value)} />
           <button onClick={() => run_action(async () => {
+            if (!userId() || !userDisplayName()) throw new Error("You must be logged in to submit a complaint");
             const transaction = await submitComplaint(userId(), complaintOrgRegistrationNumber(), complaintScore(), complaintReview());
             setOutput("Complaint submitted! Tx: " + transaction);
           })}>Submit Complaint</button>
