@@ -91,7 +91,7 @@ const App = () => {
           <input placeholder="Review" value={complaintReview()} onInput={e => setComplaintReview(e.target.value)} />
           <button onClick={() => run_action(async () => {
             if (!userId() || !userDisplayName()) throw new Error("You must be logged in to submit a complaint");
-            const transaction = await submitComplaint(userId(), complaintOrgRegistrationNumber(), complaintScore(), complaintReview());
+            const transaction = await submitComplaint(userId(), complaintOrgRegistrationNumber(), Number(complaintScore()), complaintReview());
             setOutput("Complaint submitted! Tx: " + transaction);
           })}>Submit Complaint</button>
 
