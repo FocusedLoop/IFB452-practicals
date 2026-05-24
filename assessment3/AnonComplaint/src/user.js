@@ -20,6 +20,13 @@ export async function registerUser(name) {
   return receipt.transactionHash;
 }
 
+// Get UserId to display after registration
+export async function getMyUserId() {
+  const contract = await getContract();
+  const userId = await contract.getMyUserId();
+  return userId.toString();
+}
+
 // Verify the logged in wallet owns the User ID and return user details
 export async function verifyLogin(userId) {
     const contract = await getContract();

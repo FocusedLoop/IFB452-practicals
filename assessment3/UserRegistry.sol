@@ -53,4 +53,9 @@ contract UserRegistry {
     function userExists(uint256 userId) public view returns (bool) {
         return userId > 0 && userId <= userCount;
     }
+
+    // Get userId for display
+    function getMyUserId() external view returns (uint256) {
+        return walletToUserId[msg.sender];
+    }
 }

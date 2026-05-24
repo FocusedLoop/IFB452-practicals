@@ -1,6 +1,6 @@
 import { registerOrganisation, getOrganisation, listOrganisations } from "./organisation";
 import { submitComplaint, getComplaints } from "./complaint";
-import { registerUser, verifyLogin } from "./user";
+import { registerUser, verifyLogin, getMyUserId } from "./user";
 import { createSignal } from "solid-js";
 import { getScore } from "./reputation";
 import "./app.css";
@@ -71,7 +71,8 @@ const App = () => {
           <input placeholder="Your name" value={userName()} onInput={e => setUserName(e.target.value)} />
           <button onClick={() => run_action(async () => {
             const transaction = await registerUser(userName());
-            setOutput("User registered!\nName: " + userName() + "\nTx: " + transaction + "\nNote your User ID to log in.");
+            const newUserId = await getMyUserId();
+            setOutput("User registered!\nName: " + userName() + "\nUser ID: " + newUserId + "\nTx: " + transaction + "\nNote your User ID to log in.");
           })}>Register User</button>
 
           <input placeholder="Enter your User ID" value={userId()} onInput={event => { setUserId(event.target.value); setUserDisplayName(""); }} />
