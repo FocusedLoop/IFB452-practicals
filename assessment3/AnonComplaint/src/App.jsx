@@ -60,7 +60,6 @@ const App = () => {
             setOutput(rows.join("\n"));
           })}>List Organisations</button>
 
-          <input placeholder="Business Registration Number to look up" value={orgRegistrationNumber()} onInput={e => setOrgRegistrationNumber(e.target.value)} />
           <button onClick={() => run_action(async () => {
             const org = await getOrganisation(orgRegistrationNumber());
             setOutput(`Business Registration Number: ${org.registrationNumber}\nName: ${org.name}`);
