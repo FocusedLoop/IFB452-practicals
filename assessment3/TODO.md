@@ -12,7 +12,7 @@ TODO:
         - Mikayla: Improve handling for the same user changing complaint
     
     Organisation:
-        - Mikayla: Only allow registered users to add organisations
+        - Mikayla(DONE): Only allow registered users to add organisations
         - Joshua(DONE): Better ABN validation maybe allow for other ABN country equivalents
     
     User:

@@ -20,6 +20,7 @@ contract ComplaintRegistry {
     // Mapping from complaint ID to Complaint details
     mapping(uint256 => Complaint) private complaints;
     mapping(uint256 => uint256[]) private complaintsByOrganisation;
+    mapping(uint256 => mapping(uint256 => uint256)) private latestComplaintByUser;
 
     OrganisationRegistry public organisationRegistry;
     UserRegistry public userRegistry;
@@ -46,7 +47,6 @@ contract ComplaintRegistry {
     }
 
     // Submit a complaint about an organisation
-    // TODO: BETTER HANDLING FOR A USER CHANGING A COMPLAINT
     function submitComplaint(uint256 userId, uint256 orgRegistrationNumber, uint256 score, string calldata review) external returns (uint256)
     {
         require(reputationCalculation.complaintRegistry() == address(this), "ReputationCalculation Contract must reference this contract");
@@ -55,24 +55,46 @@ contract ComplaintRegistry {
         require(organisationRegistry.organisationExists(orgRegistrationNumber), "Organisation does not exist");
         require(userRegistry.isOwner(userId, msg.sender), "Not your account");
 
+
         // Create complaint and update mappings
-        complaintCount++;
-        complaints[complaintCount] = Complaint({
-            id: complaintCount,
-            userId: userId,
-            orgRegistrationNumber: orgRegistrationNumber,
-            score: score,
-            timestamp: block.timestamp,
-            review: review
-        });
+        uint256 existingComplaintId = latestComplaintByUser[orgRegistrationNumber][userId];
+        uint256 complaintId;
+
+        if(existingComplaintId == 0) {
+            // Create new complaint if user hasn't sumbitted a complaint before
+            complaintCount++;
+
+            complaints[complaintCount] = Complaint({
+                id: complaintCount,
+                userId: userId,
+                orgRegistrationNumber: orgRegistrationNumber,
+                score: score,
+                timestamp: block.timestamp,
+                review: review
+            });
+
+            latestComplaintByUser[orgRegistrationNumber][userId] = complaintCount;
+            
+            complaintsByOrganisation[orgRegistrationNumber].push(complaintCount);
+
+            complaintId = complaintCount;
+
+        } else {
+            // Update existing complaint if user has submitted a complaint before
+            Complaint storage c = complaints[existingComplaintId];
+
+            c.score = score;
+            c.review = review;
+            c.timestamp = block.timestamp;
+
+            complaintId = existingComplaintId;
+        }
 
         // Track complaints by organisation and update reputation
-        complaintsByOrganisation[orgRegistrationNumber].push(complaintCount);
+        
         reputationCalculation.updateScore(orgRegistrationNumber, userId, score);
-
-        emit ComplaintSubmitted(complaintCount, userId, orgRegistrationNumber, score, review);
-
-        return complaintCount;
+        emit ComplaintSubmitted(complaintId, userId, orgRegistrationNumber, score, review);
+        return complaintId;
     }
 
     // Get complaints for an organisation given its ID
