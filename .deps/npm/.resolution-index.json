@@ -21,5 +21,13 @@
         "file": "assessment3/ReputationCalculation.sol"
       }
     }
+  },
+  "assessment3/UserRegistry.sol": {
+    "__sources__": {
+      "assessment3/UserRegistry.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.19;\n\ncontract UserRegistry {\n    struct User {\n        uint id;\n        string name;\n        address wallet;\n    }\n\n    uint256 public userCount;\n    mapping(uint256 => User) private users;\n    mapping(address => bool) private  isRegistered;\n    mapping(address => uint256) private walletToUserId;\n\n    event UserRegistered(uint256 indexed userId, string name);\n\n    // Register a new user\n    function registerUser(string calldata name) external returns (uint256) {\n        require(bytes(name).length > 0, \"User name required\");\n        require(!isRegistered[msg.sender], \"Wallet already in use\");\n        \n        userCount++;\n        users[userCount] = User({\n            id: userCount,\n            name: name,\n            wallet: msg.sender\n        });\n\n        // Mark wallet as registered\n        isRegistered[msg.sender] = true;\n        walletToUserId[msg.sender] = userCount;\n\n        emit UserRegistered(userCount, name);\n        return userCount;\n    }\n\n    // Retrieve user details by ID\n    function getUser(uint256 userId) external view returns (uint256 id, string memory name)\n    {\n        require(userExists(userId), \"User does not exist\");\n        User memory user = users[userId];\n        return (user.id, user.name);\n    }\n\n    // Check if a wallet address is the owner of a user ID\n    function isOwner(uint256 userId, address wallet) external view returns (bool) {\n        require(userExists(userId), \"User does not exist\");\n        return users[userId].wallet == wallet;\n    }\n\n    // Check if a user exists by ID\n    function userExists(uint256 userId) public view returns (bool) {\n        return userId > 0 && userId <= userCount;\n    }\n\n    // Get userId for display\n    function getMyUserId() external view returns (uint256) {\n        return walletToUserId[msg.sender];\n    }\n}",
+        "file": "assessment3/UserRegistry.sol"
+      }
+    }
   }
 }
