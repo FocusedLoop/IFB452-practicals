@@ -65,14 +65,9 @@ contract ReputationCalculation {
         }
     }
 
-    // TODO: FIND A BETTER SCORE CALCULATION SYSTEM (ELO LIKE?)
     // Get average score for an organisation
     function getScore(uint orgId) public view returns (uint) {
         if (reviewCount[orgId] == 0) { return 0; }
         return totalScore[orgId] / reviewCount[orgId];
     }
-
-    // TODO: ADD GET TOP SCORES
-
-    // 
 }
