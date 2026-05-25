@@ -62,7 +62,7 @@ const App = () => {
 
           <button onClick={() => run_action(async () => {
             const org = await getOrganisation(orgRegistrationNumber());
-            setOutput(`Business Registration Number: ${org.registrationNumber}\nName: ${org.name}`);
+            setOutput(`Business Registration Number: ${org.registrationNumber}\nName: ${org.name}\nScore: ${await getScore(org.registrationNumber)}/10`);
           })}>Get Organisation</button>
         </div>
         <div class="section">
