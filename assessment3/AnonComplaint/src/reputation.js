@@ -6,7 +6,8 @@ const REPUTATION_ADDRESS = import.meta.env.VITE_REPUTATION_CALCULATION_ADDRESS;
 let reputationContract;
 
 // Initialize and get the contract instance
-async function getContract() {
+async function getContract()
+{
   if (reputationContract) return reputationContract;
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   await provider.send("eth_requestAccounts", []);
@@ -16,7 +17,8 @@ async function getContract() {
 }
 
 // Get the average score for an organisation
-export async function getScore(orgRegistrationNumber) {
+export async function getScore(orgRegistrationNumber)
+{
   const contract = await getContract();
   const score = await contract.getScore(orgRegistrationNumber);
   return score.toString();

@@ -6,7 +6,8 @@ const USER_REGISTRY_ADDRESS = import.meta.env.VITE_USER_REGISTRY_ADDRESS;
 let userRegistry;
 
 // Initialize and get the contract instance
-async function getContract() {
+async function getContract()
+{
   if (userRegistry) return userRegistry;
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   await provider.send("eth_requestAccounts", []);
@@ -16,7 +17,8 @@ async function getContract() {
 }
 
 // Register a new user with a name and return the transaction hash
-export async function registerUser(name) {
+export async function registerUser(name)
+{
   const contract = await getContract();
   const transaction = await contract.registerUser(name);
   const receipt = await transaction.wait();
@@ -24,14 +26,16 @@ export async function registerUser(name) {
 }
 
 // Get UserId to display after registration
-export async function getMyUserId() {
+export async function getMyUserId()
+{
   const contract = await getContract();
   const userId = await contract.getMyUserId();
   return userId.toString();
 }
 
 // Verify the logged in wallet owns the User ID and return user details
-export async function verifyLogin(userId) {
+export async function verifyLogin(userId)
+{
     const contract = await getContract();
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signerAddress = await provider.getSigner().getAddress();

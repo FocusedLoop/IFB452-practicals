@@ -6,7 +6,8 @@ const COMPLAINT_REGISTRY_ADDRESS = import.meta.env.VITE_COMPLAINT_REGISTRY_ADDRE
 let complaintRegistry;
 
 // Initialize and get the contract instance
-async function getContract() {
+async function getContract()
+{
   if (complaintRegistry) return complaintRegistry;
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   await provider.send("eth_requestAccounts", []);
@@ -16,7 +17,8 @@ async function getContract() {
 }
 
 // Submit complaint for an organisation
-export async function submitComplaint(userId, orgRegistrationNumber, score, review) {
+export async function submitComplaint(userId, orgRegistrationNumber, score, review)
+{
   const contract = await getContract();
   const tx = await contract.submitComplaint(userId, orgRegistrationNumber, score, review);
   const receipt = await tx.wait();
@@ -25,7 +27,8 @@ export async function submitComplaint(userId, orgRegistrationNumber, score, revi
 }
 
 // Get complaints for an organisation
-export async function getComplaints(orgRegistrationNumber) {
+export async function getComplaints(orgRegistrationNumber)
+{
   const contract = await getContract();
   const complaints = await contract.getComplaints(orgRegistrationNumber);
   const complaintList = complaints.map(complaint => ({
