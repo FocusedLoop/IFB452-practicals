@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-contract ReputationCalculation {
+contract ReputationCalculation
+{
     address public owner;
     address public complaintRegistry;
 
@@ -9,20 +10,20 @@ contract ReputationCalculation {
     mapping(uint => uint) public totalScore;
     mapping(uint => uint) public reviewCount;
     mapping(uint256 => mapping(uint256 => bool)) private hasRated;
-    mapping(uint256 => mapping(uint256 => uint256)) private userRating; // Per user
+    mapping(uint256 => mapping(uint256 => uint256)) private userRating; // Per Ratings user
 
+    // Events for score updates and additions
     event ScoreAdded(uint256 indexed orgId, uint256 userId, uint256 score);
     event ScoreUpdated(uint256 indexed orgId, uint256 userId, uint256 oldScore, uint256 newScore);
 
     // Lock in the ComplaintRegistry address to restrict who can update scores
-    modifier onlyComplaintRegistry() {
+    modifier onlyComplaintRegistry()
+    {
         require(msg.sender == complaintRegistry, "Only ComplaintRegistry can call");
         _;
     }
 
-    constructor() {
-        owner = msg.sender;
-    }
+    constructor() { owner = msg.sender; }
 
     // Set the ComplaintRegistry address
     function setComplaintRegistry(address desired_complaintRegistry) external 
@@ -47,15 +48,19 @@ contract ReputationCalculation {
     }
 
     // Update score for an organisation by a user
-    function updateScore(uint orgId, uint256 userId, uint score) public onlyComplaintRegistry {
+    function updateScore(uint orgId, uint256 userId, uint score) public onlyComplaintRegistry
+    {
         require(score >= 1 && score <= 10, "Score must be between 1 and 10");
 
         // If the user has already rated, update their score, otherwise add a new score
-        if (hasRated[orgId][userId]) {
+        if (hasRated[orgId][userId])
+        {
             uint oldScore = updateExistingScore(orgId, userId, score);
 
             emit ScoreUpdated(orgId, userId, oldScore, score);
-        } else {
+        }
+        else
+        {
             totalScore[orgId] += score;
             reviewCount[orgId] += 1;
             hasRated[orgId][userId] = true;
@@ -66,7 +71,8 @@ contract ReputationCalculation {
     }
 
     // Get average score for an organisation
-    function getScore(uint orgId) public view returns (uint) {
+    function getScore(uint orgId) public view returns (uint)
+    {
         if (reviewCount[orgId] == 0) { return 0; }
         return totalScore[orgId] / reviewCount[orgId];
     }

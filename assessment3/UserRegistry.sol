@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-contract UserRegistry {
+contract UserRegistry
+{
     struct User {
         uint id;
         string name;
@@ -16,7 +17,8 @@ contract UserRegistry {
     event UserRegistered(uint256 indexed userId, string name);
 
     // Register a new user
-    function registerUser(string calldata name) external returns (uint256) {
+    function registerUser(string calldata name) external returns (uint256)
+    {
         require(bytes(name).length > 0, "User name required");
         require(!isRegistered[msg.sender], "Wallet already in use");
         
@@ -44,18 +46,21 @@ contract UserRegistry {
     }
 
     // Check if a wallet address is the owner of a user ID
-    function isOwner(uint256 userId, address wallet) external view returns (bool) {
+    function isOwner(uint256 userId, address wallet) external view returns (bool)
+    {
         require(userExists(userId), "User does not exist");
         return users[userId].wallet == wallet;
     }
 
     // Check if a user exists by ID
-    function userExists(uint256 userId) public view returns (bool) {
+    function userExists(uint256 userId) public view returns (bool)
+    {
         return userId > 0 && userId <= userCount;
     }
 
     // Get userId for display
-    function getMyUserId() external view returns (uint256) {
+    function getMyUserId() external view returns (uint256)
+    {
         return walletToUserId[msg.sender];
     }
 }

@@ -5,7 +5,8 @@ import "./OrganisationRegistry.sol";
 import "./UserRegistry.sol";
 import "./ReputationCalculation.sol";
 
-contract ComplaintRegistry {
+contract ComplaintRegistry
+{
     struct Complaint {
         uint id;
         uint userId;
@@ -60,7 +61,8 @@ contract ComplaintRegistry {
         uint256 existingComplaintId = latestComplaintByUser[orgRegistrationNumber][userId];
         uint256 complaintId;
 
-        if(existingComplaintId == 0) {
+        if(existingComplaintId == 0)
+        {
             // Create new complaint if user hasn't sumbitted a complaint before
             complaintCount++;
 
@@ -79,7 +81,9 @@ contract ComplaintRegistry {
 
             complaintId = complaintCount;
 
-        } else {
+        }
+        else
+        {
             // Update existing complaint if user has submitted a complaint before
             Complaint storage c = complaints[existingComplaintId];
 

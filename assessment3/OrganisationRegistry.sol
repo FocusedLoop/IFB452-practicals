@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-contract OrganisationRegistry {
+contract OrganisationRegistry
+{
     struct Organisation {
         uint registrationNumber;
         string name;
@@ -35,7 +36,8 @@ contract OrganisationRegistry {
     }
 
     // Validate registration number (example: ABN or ACN format)
-    function isValidRegistrationNumber(uint256 registrationNumber) internal pure returns (bool) {
+    function isValidRegistrationNumber(uint256 registrationNumber) internal pure returns (bool)
+    {
         return registrationNumber >= 10000000 && registrationNumber <= 999999999999999;
     }
 
