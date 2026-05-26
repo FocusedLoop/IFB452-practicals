@@ -1,9 +1,11 @@
 import { ethers } from "ethers";
 import UserRegistryABI from "./abis/user.json";
 
+// Load the contract address from environment variables
 const USER_REGISTRY_ADDRESS = import.meta.env.VITE_USER_REGISTRY_ADDRESS;
 let userRegistry;
 
+// Initialize and get the contract instance
 async function getContract() {
   if (userRegistry) return userRegistry;
   const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -13,6 +15,7 @@ async function getContract() {
   return userRegistry;
 }
 
+// Register a new user with a name and return the transaction hash
 export async function registerUser(name) {
   const contract = await getContract();
   const transaction = await contract.registerUser(name);

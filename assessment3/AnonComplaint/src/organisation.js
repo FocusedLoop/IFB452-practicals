@@ -1,9 +1,11 @@
 import { ethers } from "ethers";
 import OrgRegistryABI from "./abis/org.json";
 
+// Load the contract address from environment variables
 const ORG_REGISTRY_ADDRESS = import.meta.env.VITE_ORG_REGISTRY_ADDRESS;
 let orgRegistry;
 
+// Initialize and get the contract instance
 async function getContract() {
   if (orgRegistry) return orgRegistry;
   const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -21,7 +23,7 @@ export async function registerOrganisation(orgRegistrationNumber, name) {
   return receipt.transactionHash;
 }
 
-// List
+// List all organisations with their registration numbers and names
 export async function listOrganisations() {
   const contract = await getContract();
   const orgs = await contract.listOrganisations();

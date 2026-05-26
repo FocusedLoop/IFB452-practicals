@@ -5,6 +5,7 @@ import { createSignal } from "solid-js";
 import { getScore } from "./reputation";
 import "./app.css";
 
+// Main app where everything is run, displays everything to the user
 const App = () => {
   // App state
   const [output, setOutput] = createSignal(""); // Output message
@@ -49,6 +50,7 @@ const App = () => {
           <h2>Organisation Registry</h2>
           <input placeholder="Business Registration Number (11 digits)" value={orgRegistrationNumber()} onInput={e => setOrgRegistrationNumber(e.target.value)} />
           <input placeholder="Organisation name" value={orgName()} onInput={e => setOrgName(e.target.value)} />
+          
           <button onClick={() => run_action(async () => {
             const transaction = await registerOrganisation(orgRegistrationNumber(), orgName());
             setOutput("Organisation registered! Tx: " + transaction);
@@ -65,9 +67,11 @@ const App = () => {
             setOutput(`Business Registration Number: ${org.registrationNumber}\nName: ${org.name}\nScore: ${await getScore(org.registrationNumber)}/10`);
           })}>Get Organisation</button>
         </div>
+
         <div class="section">
           <h2>User Registry</h2>
           <input placeholder="Your name" value={userName()} onInput={e => setUserName(e.target.value)} />
+          
           <button onClick={() => run_action(async () => {
             const transaction = await registerUser(userName());
             const newUserId = await getMyUserId();
@@ -75,6 +79,7 @@ const App = () => {
           })}>Register User</button>
 
           <input placeholder="Enter your User ID" value={userId()} onInput={event => { setUserId(event.target.value); setUserDisplayName(""); }} />
+          
           <button onClick={() => run_action(async () => {
             const user = await verifyLogin(userId());
             setUserDisplayName(user.name);
@@ -88,6 +93,7 @@ const App = () => {
           <input placeholder="Organisation Business Registration Number" value={complaintOrgRegistrationNumber()} onInput={e => setComplaintOrgRegistrationNumber(e.target.value)} />
           <input placeholder="Score (1-10)" value={complaintScore()} onInput={e => setComplaintScore(e.target.value)} />
           <input placeholder="Review" value={complaintReview()} onInput={e => setComplaintReview(e.target.value)} />
+          
           <button onClick={() => run_action(async () => {
             if (!userId() || !userDisplayName()) throw new Error("You must be logged in to submit a complaint");
             const transaction = await submitComplaint(userId(), complaintOrgRegistrationNumber(), Number(complaintScore()), complaintReview());

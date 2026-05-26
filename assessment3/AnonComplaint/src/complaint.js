@@ -1,9 +1,11 @@
 import { ethers } from "ethers";
 import ComplaintRegistryABI from "./abis/complaint.json";
 
+// Load the contract address from environment variables
 const COMPLAINT_REGISTRY_ADDRESS = import.meta.env.VITE_COMPLAINT_REGISTRY_ADDRESS;
 let complaintRegistry;
 
+// Initialize and get the contract instance
 async function getContract() {
   if (complaintRegistry) return complaintRegistry;
   const provider = new ethers.providers.Web3Provider(window.ethereum);
