@@ -12,11 +12,15 @@ Deploy in the following order:
 4. **ComplaintRegistry** - pass the addresses of the above three contracts into the constructor
 5. Call `setComplaintRegistry` on **ReputationCalculation**, passing the **ComplaintRegistry** address
 
-### Used SolidJs for the frontend
-https://www.solidjs.com/
+### Tech Used
+- Smart Contracts: [Solidity v0.8.19](https://docs.soliditylang.org/en/v0.8.19/)
+- Smart Contract Examples Followed: https://github.com/tanzirmehedi/IFB452-Blockchain-Technology-Practical/tree/main
+- Frontend: [SolidJS](https://www.solidjs.com/)
+- Blockchain Interaction: [Ethers.js](https://docs.ethers.org/v5/)
 
-### Used Ethers for connection to metamask
-https://docs.ethers.org/v5/
+### Diagrams
+- Application Architecture: `assessment3\anoncomplaint_architecture.png`
+- BPMN Model: `assessment3\AnonComplaint_BPMN_Model.png`
 
 ### Notes
 - Allman style **ONLY** >:( expect for structs and one line operations (because Allman rules)
